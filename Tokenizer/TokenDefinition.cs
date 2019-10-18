@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace TranslatorDesign.Tokenizer
 {
@@ -11,7 +10,7 @@ namespace TranslatorDesign.Tokenizer
 		public TokenDefinition(TokenType returnsToken, string regexPattern)
 		{
 			_returnsToken = returnsToken;
-			_regex = new Regex(regexPattern);
+			_regex = new Regex(regexPattern, RegexOptions.Multiline);
 		}
 
 		public TokenMatch Match(string input)

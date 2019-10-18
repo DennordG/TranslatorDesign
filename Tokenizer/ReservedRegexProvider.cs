@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace TranslatorDesign.Tokenizer
 {
@@ -27,7 +26,7 @@ namespace TranslatorDesign.Tokenizer
 
 		private string WrapPattern(string pattern)
 		{
-			return $"^{pattern}";
+			return $@"^{pattern}\b";
 		}
 	}
 }
