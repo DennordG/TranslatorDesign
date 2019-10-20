@@ -65,5 +65,50 @@ namespace TranslatorDesign.Tests
 			Assert.IsNull(match.RemainingText);
 			Assert.AreEqual(TokenType.Invalid, match.TokenType);
 		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid5()
+		{
+			var input = "123abc";
+
+			var tokenDefinition = new TokenDefinition(TokenType.Integer, ReservedProvider.GetPattern());
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid6()
+		{
+			var input = "._.";
+
+			var tokenDefinition = new TokenDefinition(TokenType.Integer, ReservedProvider.GetPattern());
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid7()
+		{
+			var input = @"\(^o^)/";
+
+			var tokenDefinition = new TokenDefinition(TokenType.Integer, ReservedProvider.GetPattern());
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
 	}
 }

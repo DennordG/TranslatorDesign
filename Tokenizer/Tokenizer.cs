@@ -13,6 +13,7 @@ namespace TranslatorDesign.Tokenizer
 			_tokenDefinitions = new List<TokenDefinition>
 			{
 				new TokenDefinition(TokenType.Reserved, reservedProvider.GetPattern()),
+				new TokenDefinition(TokenType.Integer, RegexWrapper.DefaultWrap(@"\d+")),
 			};
 		}
 
