@@ -71,7 +71,7 @@ namespace TranslatorDesign.Tests
 		{
 			var input = "123abc";
 
-			var tokenDefinition = new TokenDefinition(TokenType.Integer, ReservedProvider.GetPattern());
+			var tokenDefinition = new TokenDefinition(TokenType.Integer, IntegerRegex);
 
 			var match = tokenDefinition.Match(input);
 
@@ -86,7 +86,7 @@ namespace TranslatorDesign.Tests
 		{
 			var input = "._.";
 
-			var tokenDefinition = new TokenDefinition(TokenType.Integer, ReservedProvider.GetPattern());
+			var tokenDefinition = new TokenDefinition(TokenType.Integer, IntegerRegex);
 
 			var match = tokenDefinition.Match(input);
 
@@ -101,7 +101,7 @@ namespace TranslatorDesign.Tests
 		{
 			var input = @"\(^o^)/";
 
-			var tokenDefinition = new TokenDefinition(TokenType.Integer, ReservedProvider.GetPattern());
+			var tokenDefinition = new TokenDefinition(TokenType.Integer, IntegerRegex);
 
 			var match = tokenDefinition.Match(input);
 

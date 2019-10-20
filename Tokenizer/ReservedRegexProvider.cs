@@ -21,7 +21,7 @@ namespace TranslatorDesign.Tokenizer
 
 		public string GetPattern()
 		{
-			return string.Join("|", _patterns.Select(RegexWrapper.ReservedWrap));
+			return string.Join("|", _patterns.Select(RegexWrapper.DefaultWrap));
 		}
 	}
 }
