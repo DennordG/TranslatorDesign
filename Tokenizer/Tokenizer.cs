@@ -38,6 +38,10 @@ namespace TranslatorDesign.Tokenizer
                     {
                         remainingText = remainingText.Substring(1);
                     }
+                    else if(IsComment(remainingText))
+                    {
+                        remainingText = "";
+                    }
                     else
                     {
                         var invalidTokenMatch = CreateInvalidTokenMatch(remainingText);
@@ -74,7 +78,13 @@ namespace TranslatorDesign.Tokenizer
 			return Regex.IsMatch(text, "^\\s+");
 		}
 
-		private TokenMatch FindMatch(string text)
+        private bool IsComment(string text)
+        {
+            return Regex.IsMatch(text, "^#") || Regex.IsMatch(text, "^//");
+        }
+
+
+        private TokenMatch FindMatch(string text)
 		{
 			foreach (var tokenDefinition in _tokenDefinitions)
 			{
