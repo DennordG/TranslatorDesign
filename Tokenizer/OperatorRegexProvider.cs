@@ -8,9 +8,16 @@ namespace TranslatorDesign.Tokenizer
 {
     public class OperatorRegexProvider
     {
-        public static string DefaultWrap(string pattern)
+        private readonly string _pattern;
+
+        public OperatorRegexProvider()
         {
-            return $@"^{pattern}\b[\n\s\t]*";
+            _pattern = @"^==|!=|<=|>=|<<|>>|\+|-|\*|\/|&&|\|\||<|>|!";
+        }
+
+        public string GetPattern()
+        {
+            return string.Join("|", _pattern);
         }
     }
 }

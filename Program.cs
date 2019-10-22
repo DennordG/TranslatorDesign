@@ -30,7 +30,7 @@ namespace TranslatorDesign
                 var inputFile = new InputFileForValidation(pathInputFile);
                 if(inputFile.FileContent != null)
                 {
-                    var tokenizer = new Tokenizer.Tokenizer(new ReservedRegexProvider());
+                    var tokenizer = new Tokenizer.Tokenizer(new ReservedRegexProvider(), new OperatorRegexProvider());
                     tokens = tokenizer.Tokenize(inputFile.FileContent);
                 }
             }

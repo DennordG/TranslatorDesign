@@ -7,6 +7,7 @@
 		SequenceTerminator,
 		Integer,
         String,
-        ArithmeticAndLogicOperator
+        ArithmeticAndLogicOperator,
+        SpecificSimbol,
     }
 }
