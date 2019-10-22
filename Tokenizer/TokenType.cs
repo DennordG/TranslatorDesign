@@ -6,6 +6,7 @@
 		Reserved,
 		SequenceTerminator,
 		Integer,
-        String
-	}
+        String,
+        ArithmeticAndLogicOperator
+    }
 }

@@ -14,6 +14,7 @@ namespace TranslatorDesign.Tokenizer
 			{
 				new TokenDefinition(TokenType.Reserved, reservedProvider.GetPattern()),
 				new TokenDefinition(TokenType.Integer, RegexWrapper.DefaultWrap(@"\d+")),
+                new TokenDefinition(TokenType.ArithmeticAndLogicOperator, OperatorRegexProvider.DefaultWrap(@"^==|!=|<=|>=|<<|>>|\+|-|\*|\/|&&|\|\||<|>|!"))
                 //new TokenDefinition(TokenType.String, RegexWrapper.DefaultWrap("\"\"")),
             };
 		}
