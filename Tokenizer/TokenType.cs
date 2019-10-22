@@ -5,6 +5,7 @@
 		Invalid,
 		Reserved,
 		SequenceTerminator,
-		Integer
+		Integer,
+        String
 	}
 }
