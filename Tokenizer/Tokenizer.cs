@@ -14,7 +14,8 @@ namespace TranslatorDesign.Tokenizer
 			{
 				new TokenDefinition(TokenType.Reserved, reservedProvider.GetPattern()),
 				new TokenDefinition(TokenType.Integer, RegexWrapper.DefaultWrap(@"\d+")),
-			};
+                //new TokenDefinition(TokenType.String, RegexWrapper.DefaultWrap("\"\"")),
+            };
 		}
 
 		public IList<Token> Tokenize(string text)

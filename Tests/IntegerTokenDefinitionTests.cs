@@ -15,9 +15,9 @@ namespace TranslatorDesign.Tests
 
 			var match = tokenDefinition.Match(input);
 
-			Assert.IsTrue(match.IsMatch);
+            Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("123", match.Value);
-			Assert.AreEqual(" + 11", match.RemainingText);
+			Assert.AreEqual("+ 11", match.RemainingText);
 			Assert.AreEqual(TokenType.Integer, match.TokenType);
 		}
 
@@ -32,7 +32,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("0115", match.Value);
-			Assert.AreEqual(" -1", match.RemainingText);
+			Assert.AreEqual("-1", match.RemainingText);
 			Assert.AreEqual(TokenType.Integer, match.TokenType);
 		}
 
@@ -62,7 +62,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("1", match.Value);
-			Assert.AreEqual("\n2\n3\n4", match.RemainingText);
+			Assert.AreEqual("2\n3\n4", match.RemainingText);
 			Assert.AreEqual(TokenType.Integer, match.TokenType);
 		}
 	}

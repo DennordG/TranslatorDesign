@@ -4,7 +4,7 @@
 	{
 		public static string DefaultWrap(string pattern)
 		{
-			return $@"^{pattern}\b";
+			return $@"^{pattern}\b[\n\s\t]*";
 		}
 	}
 }

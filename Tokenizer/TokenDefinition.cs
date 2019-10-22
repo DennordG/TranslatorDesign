@@ -10,7 +10,7 @@ namespace TranslatorDesign.Tokenizer
 		public TokenDefinition(TokenType returnsToken, string regexPattern)
 		{
 			_returnsToken = returnsToken;
-			_regex = new Regex(regexPattern, RegexOptions.Multiline);
+			_regex = new Regex(regexPattern);
 		}
 
 		public TokenMatch Match(string input)
@@ -26,12 +26,12 @@ namespace TranslatorDesign.Tokenizer
 					remainingText = input.Substring(match.Length);
 				}
 
-				return new TokenMatch
-				{
-					IsMatch = true,
-					RemainingText = remainingText,
-					TokenType = _returnsToken,
-					Value = match.Value
+                return new TokenMatch
+                {
+                    IsMatch = true,
+                    RemainingText = remainingText,
+                    TokenType = _returnsToken,
+                    Value = match.Value.Trim(new[] { '\n', '\t', ' ' })
 				};
 			}
 			else

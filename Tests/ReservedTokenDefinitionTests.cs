@@ -17,7 +17,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("int", match.Value);
-			Assert.AreEqual(" a=32;", match.RemainingText);
+			Assert.AreEqual("a=32;", match.RemainingText);
 			Assert.AreEqual(TokenType.Reserved, match.TokenType);
 		}
 
@@ -32,7 +32,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("bool", match.Value);
-			Assert.AreEqual(" a=true;", match.RemainingText);
+			Assert.AreEqual("a=true;", match.RemainingText);
 			Assert.AreEqual(TokenType.Reserved, match.TokenType);
 		}
 
@@ -47,7 +47,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("void", match.Value);
-			Assert.AreEqual(" f(int x)", match.RemainingText);
+			Assert.AreEqual("f(int x)", match.RemainingText);
 			Assert.AreEqual(TokenType.Reserved, match.TokenType);
 		}
 
@@ -62,7 +62,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("return", match.Value);
-			Assert.AreEqual("\nasdf", match.RemainingText);
+			Assert.AreEqual("asdf", match.RemainingText);
 			Assert.AreEqual(TokenType.Reserved, match.TokenType);
 		}
 	}
