@@ -18,32 +18,36 @@ namespace TranslatorDesign.Tokenizer
             };
 		}
 
-		public IList<Token> Tokenize(string text)
+		public IList<Token> Tokenize(string[] text)
 		{
-			var tokens = new List<Token>();
-			var remainingText = text;
+            var tokens = new List<Token>();
 
-			while (!string.IsNullOrEmpty(remainingText))
-			{
-				var match = FindMatch(remainingText);
-				if (match.IsMatch)
-				{
-					tokens.Add(new Token(match.TokenType, match.Value));
-					remainingText = match.RemainingText;
-				}
-				else if (IsWhiteSpace(remainingText))
-				{
-					remainingText = remainingText.Substring(1);
-				}
-				else
-				{
-					var invalidTokenMatch = CreateInvalidTokenMatch(remainingText);
-					tokens.Add(new Token(invalidTokenMatch.TokenType, invalidTokenMatch.Value));
-					remainingText = invalidTokenMatch.RemainingText;
-				}
-			}
+            foreach (string line in text)
+            {
+                var remainingText = line;
 
-			tokens.Add(new Token(TokenType.SequenceTerminator, string.Empty));
+                while (!string.IsNullOrEmpty(remainingText))
+                {
+                    var match = FindMatch(remainingText);
+                    if (match.IsMatch)
+                    {
+                        tokens.Add(new Token(match.TokenType, match.Value));
+                        remainingText = match.RemainingText;
+                    }
+                    else if (IsWhiteSpace(remainingText))
+                    {
+                        remainingText = remainingText.Substring(1);
+                    }
+                    else
+                    {
+                        var invalidTokenMatch = CreateInvalidTokenMatch(remainingText);
+                        tokens.Add(new Token(invalidTokenMatch.TokenType, invalidTokenMatch.Value));
+                        remainingText = invalidTokenMatch.RemainingText;
+                    }
+                }
+
+                tokens.Add(new Token(TokenType.SequenceTerminator, string.Empty));
+            }
 
 			return tokens;
 		}
