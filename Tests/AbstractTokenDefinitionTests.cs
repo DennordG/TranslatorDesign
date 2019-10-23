@@ -7,11 +7,16 @@ namespace TranslatorDesign.Tests
 	{
 		protected readonly ReservedRegexProvider ReservedProvider;
 		protected readonly string IntegerRegex;
+        protected readonly OperatorRegexProvider OperatorProvider;
+        protected readonly SyntaxOperatorRegexProvider SyntaxProvider;
 
-		public AbstractTokenDefinitionTests()
+        public AbstractTokenDefinitionTests()
 		{
 			ReservedProvider = new ReservedRegexProvider();
 			IntegerRegex = RegexWrapper.DefaultWrap(@"\d+");
-		}
+            OperatorProvider = new OperatorRegexProvider();
+            SyntaxProvider = new SyntaxOperatorRegexProvider();
+
+        }
 	}
 }
