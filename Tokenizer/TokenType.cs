@@ -8,6 +8,6 @@
 		Integer,
         String,
         ArithmeticAndLogicOperator,
-        SpecificSimbol,
+        SyntaxOperator,
     }
 }

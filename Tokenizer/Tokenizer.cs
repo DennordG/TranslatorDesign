@@ -8,13 +8,14 @@ namespace TranslatorDesign.Tokenizer
 	{
 		private readonly List<TokenDefinition> _tokenDefinitions;
 
-		public Tokenizer(ReservedRegexProvider reservedProvider, OperatorRegexProvider operatorProvider)
+		public Tokenizer(ReservedRegexProvider reservedProvider, OperatorRegexProvider operatorProvider, SyntaxOperatorRegexProvider syntaxProvider)
 		{
 			_tokenDefinitions = new List<TokenDefinition>
 			{
 				new TokenDefinition(TokenType.Reserved, reservedProvider.GetPattern()),
 				new TokenDefinition(TokenType.Integer, RegexWrapper.DefaultWrap(@"\d+")),
-                new TokenDefinition(TokenType.ArithmeticAndLogicOperator, operatorProvider.GetPattern())
+                new TokenDefinition(TokenType.ArithmeticAndLogicOperator, operatorProvider.GetPattern()),
+                new TokenDefinition(TokenType.SyntaxOperator, syntaxProvider.GetPattern()),
                 //new TokenDefinition(TokenType.String, RegexWrapper.DefaultWrap("\"\"")),
             };
 		}
