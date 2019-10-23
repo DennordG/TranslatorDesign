@@ -1,25 +1,16 @@
-﻿using System.Linq;
-
-namespace TranslatorDesign.Tokenizer
+﻿namespace TranslatorDesign.Tokenizer.RegexProvider
 {
-    public class OperatorRegexProvider
+    public class OperatorRegexProvider : AbstractRegexProvider
     {
-        private readonly string[] _patterns;
-
         public OperatorRegexProvider()
         {
-            _patterns = new[]
+            Patterns = new[]
             {
                 @"\<\<", @"\>\>", // bit-wise operations
                 @"\<=", @"\>=", "!=", "==", @"\<", @"\>", // comparison
                 @"\+", "-", @"\*", "/", // arithemtic
                 "!", "&&", @"\|\|", // logical operations
             };
-        }
-
-        public string GetPattern()
-        {
-            return string.Join("|", _patterns.Select(RegexWrapper.DefaultWrap));
         }
     }
 }

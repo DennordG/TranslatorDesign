@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using TranslatorDesign.Helpers;
 using TranslatorDesign.Tokenizer;
+using TranslatorDesign.Tokenizer.RegexProvider;
 
 namespace TranslatorDesign
 {

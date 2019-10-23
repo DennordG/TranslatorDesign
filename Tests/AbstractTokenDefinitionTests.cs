@@ -1,4 +1,5 @@
 ﻿using TranslatorDesign.Tokenizer;
+using TranslatorDesign.Tokenizer.RegexProvider;
 
 namespace TranslatorDesign.Tests
 {
