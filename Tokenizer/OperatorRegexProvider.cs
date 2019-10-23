@@ -1,23 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace TranslatorDesign.Tokenizer
 {
     public class OperatorRegexProvider
     {
-        private readonly string _pattern;
+        private readonly string[] _patterns;
 
         public OperatorRegexProvider()
         {
-            _pattern = @"^==|!=|<=|>=|<<|>>|\+|-|\*|\/|&&|\|\||<|>|!";
+            _patterns = new[]
+            {
+                @"\<\<", @"\>\>", // bit-wise operations
+                @"\<=", @"\>=", "!=", "==", @"\<", @"\>", // comparison
+                @"\+", "-", @"\*", "/", // arithemtic
+                "!", "&&", @"\|\|", // logical operations
+            };
         }
 
         public string GetPattern()
         {
-            return string.Join("|", _pattern);
+            return string.Join("|", _patterns.Select(RegexWrapper.DefaultWrap));
         }
     }
 }

@@ -67,7 +67,7 @@ namespace TranslatorDesign.Tests
 		}
 
 		[TestMethod]
-		public void TokenDefinition_IsInvalid5()
+ 		public void TokenDefinition_IsInvalid5()
 		{
 			var input = "123abc";
 
@@ -102,6 +102,21 @@ namespace TranslatorDesign.Tests
 			var input = @"\(^o^)/";
 
 			var tokenDefinition = new TokenDefinition(TokenType.Integer, IntegerRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid8()
+		{
+			var input = @"false;";
+
+			var tokenDefinition = new TokenDefinition(TokenType.Reserved, ReservedProvider.GetPattern());
 
 			var match = tokenDefinition.Match(input);
 

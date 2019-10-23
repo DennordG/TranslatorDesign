@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TranslatorDesign.Helpers
 {
@@ -22,9 +20,9 @@ namespace TranslatorDesign.Helpers
         {
             try
             {
-                if (FileExist())
+                if (FileExists())
                 {
-                    FileContent = System.IO.File.ReadAllLines(FilePath);
+                    FileContent = File.ReadAllLines(FilePath).Select(line => $"{line}\n").ToArray();
                 }
             }
             catch(Exception ex)
@@ -33,9 +31,9 @@ namespace TranslatorDesign.Helpers
             }
         }
 
-        private bool FileExist()
+        private bool FileExists()
         {
-            return System.IO.File.Exists(FilePath);
+            return File.Exists(FilePath);
         }
     }
 }

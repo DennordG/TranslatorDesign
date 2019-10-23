@@ -39,7 +39,7 @@ namespace TranslatorDesign.Tokenizer
                     {
                         remainingText = remainingText.Substring(1);
                     }
-                    else if(IsComment(remainingText))
+                    else if (IsComment(remainingText))
                     {
                         remainingText = "";
                     }
@@ -81,9 +81,8 @@ namespace TranslatorDesign.Tokenizer
 
         private bool IsComment(string text)
         {
-            return Regex.IsMatch(text, "^#") || Regex.IsMatch(text, "^//");
+            return Regex.IsMatch(text, "^#|^//");
         }
-
 
         private TokenMatch FindMatch(string text)
 		{

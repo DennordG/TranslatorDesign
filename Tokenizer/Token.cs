@@ -1,6 +1,9 @@
-﻿namespace TranslatorDesign.Tokenizer
+﻿using System.Diagnostics;
+
+namespace TranslatorDesign.Tokenizer
 {
-	public class Token
+    [DebuggerDisplay("{TokenType}")]
+    public class Token
 	{
 		public Token(TokenType tokenType)
 		{

@@ -2,7 +2,7 @@
 
 namespace TranslatorDesign.Tokenizer
 {
-	public class TokenDefinition
+    public class TokenDefinition
 	{
 		private readonly TokenType _returnsToken;
 		private readonly Regex _regex;

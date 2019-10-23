@@ -39,7 +39,7 @@ namespace TranslatorDesign.Tests
 		[TestMethod]
 		public void TokenDefinition_IsInteger3()
 		{
-			var input = "619949104146091346013403410946";
+			var input = "619949104146091346013403410946 ";
 
 			var tokenDefinition = new TokenDefinition(TokenType.Integer, IntegerRegex);
 
