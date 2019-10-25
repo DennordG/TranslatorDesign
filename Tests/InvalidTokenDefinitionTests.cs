@@ -125,5 +125,65 @@ namespace TranslatorDesign.Tests
 			Assert.IsNull(match.RemainingText);
 			Assert.AreEqual(TokenType.Invalid, match.TokenType);
 		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid9()
+		{
+			var input = "\"asdf\\\" ";
+
+			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid10()
+		{
+			var input = "\"test\\p\" ";
+
+			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid11()
+		{
+			var input = "\"test\\n\\a\" ";
+
+			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid12()
+		{
+			var input = "\"test\"\" ";
+
+			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
 	}
 }

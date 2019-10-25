@@ -64,6 +64,7 @@
     <Compile Include="Tests\IntegerTokenDefinitionTests.cs" />
     <Compile Include="Tests\InvalidTokenDefinitionTests.cs" />
     <Compile Include="Tests\OperatorTokenDefinitionTests.cs" />
+    <Compile Include="Tests\StringTokenDefinitionTests.cs" />
     <Compile Include="Tests\SyntaxTokenDefinitionTests.cs" />
     <Compile Include="Tokenizer\RegexProvider\AbstractRegexProvider.cs" />
     <Compile Include="Tokenizer\RegexProvider\OperatorRegexProvider.cs" />

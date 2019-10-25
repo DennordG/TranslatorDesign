@@ -6,17 +6,20 @@ namespace TranslatorDesign.Tests
 	public class AbstractTokenDefinitionTests
 	{
 		protected readonly ReservedRegexProvider ReservedProvider;
-		protected readonly string IntegerRegex;
-        protected readonly OperatorRegexProvider OperatorProvider;
+		protected readonly OperatorRegexProvider OperatorProvider;
         protected readonly SyntaxOperatorRegexProvider SyntaxProvider;
 
-        public AbstractTokenDefinitionTests()
+		protected readonly string IntegerRegex;
+		protected readonly string StringRegex;
+
+		public AbstractTokenDefinitionTests()
 		{
 			ReservedProvider = new ReservedRegexProvider();
-			IntegerRegex = RegexWrapper.DefaultWrap(@"\d+");
             OperatorProvider = new OperatorRegexProvider();
             SyntaxProvider = new SyntaxOperatorRegexProvider();
 
-        }
+			IntegerRegex = RegexWrapper.DefaultWrap(@"\d+");
+			StringRegex = RegexWrapper.DefaultWrap("\"{1}(?:(?:[^\"\\\\]|(?:\\\\[tn\"'\\\\]))+)\"{1}");
+		}
 	}
 }
