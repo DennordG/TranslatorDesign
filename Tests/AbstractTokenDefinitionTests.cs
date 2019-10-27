@@ -11,6 +11,7 @@ namespace TranslatorDesign.Tests
 
 		protected readonly string IntegerRegex;
 		protected readonly string StringRegex;
+		protected readonly string IdentifierRegex;
 
 		public AbstractTokenDefinitionTests()
 		{
@@ -20,6 +21,7 @@ namespace TranslatorDesign.Tests
 
 			IntegerRegex = RegexWrapper.DefaultWrap(@"\d+");
 			StringRegex = RegexWrapper.DefaultWrap("\"{1}(?:(?:[^\"\\\\]|(?:\\\\[tn\"'\\\\]))+)\"{1}");
+			IdentifierRegex = RegexWrapper.DefaultWrap(@"(?:(?:^_+[a-zA-Z\d]\w*)|(?:^[a-zA-Z]\w*))");
 		}
 	}
 }

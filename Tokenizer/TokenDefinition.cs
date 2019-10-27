@@ -31,7 +31,7 @@ namespace TranslatorDesign.Tokenizer
                     IsMatch = true,
                     RemainingText = remainingText,
                     TokenType = _returnsToken,
-                    Value = match.Value.Trim(new[] { '\n', '\t', ' ' })
+                    Value = match.Value.Trim()
 				};
 			}
 			else

@@ -61,6 +61,7 @@
     <Compile Include="Helpers\InputFileForValidation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\AbstractTokenDefinitionTests.cs" />
+    <Compile Include="Tests\IdentifierTokenDefinitionTests.cs" />
     <Compile Include="Tests\IntegerTokenDefinitionTests.cs" />
     <Compile Include="Tests\InvalidTokenDefinitionTests.cs" />
     <Compile Include="Tests\OperatorTokenDefinitionTests.cs" />

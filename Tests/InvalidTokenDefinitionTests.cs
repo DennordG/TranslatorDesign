@@ -185,5 +185,50 @@ namespace TranslatorDesign.Tests
 			Assert.IsNull(match.RemainingText);
 			Assert.AreEqual(TokenType.Invalid, match.TokenType);
 		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid13()
+		{
+			var input = "_ ";
+
+			var tokenDefinition = new TokenDefinition(TokenType.Identifier, IdentifierRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid14()
+		{
+			var input = "123asdf ";
+
+			var tokenDefinition = new TokenDefinition(TokenType.Identifier, IdentifierRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
+		public void TokenDefinition_IsInvalid15()
+		{
+			var input = "__ ";
+
+			var tokenDefinition = new TokenDefinition(TokenType.Identifier, IdentifierRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
 	}
 }
