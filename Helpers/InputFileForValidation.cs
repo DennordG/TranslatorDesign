@@ -22,7 +22,7 @@ namespace TranslatorDesign.Helpers
             {
                 if (FileExists())
                 {
-                    FileContent = File.ReadAllLines(FilePath).Select(line => $"{line}\n").ToArray();
+                    FileContent = File.ReadAllLines(FilePath);
                 }
             }
             catch(Exception ex)

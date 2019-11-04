@@ -19,9 +19,9 @@ namespace TranslatorDesign.Tests
             OperatorProvider = new OperatorRegexProvider();
             SyntaxProvider = new SyntaxOperatorRegexProvider();
 
-			IntegerRegex = RegexWrapper.DefaultWrap(@"\d+");
+			IntegerRegex = RegexWrapper.DefaultWrap(@"\d+\b");
 			StringRegex = RegexWrapper.DefaultWrap("\"{1}(?:(?:[^\"\\\\]|(?:\\\\[tn\"'\\\\]))+)\"{1}");
-			IdentifierRegex = RegexWrapper.DefaultWrap(@"(?:(?:^_+[a-zA-Z\d]\w*)|(?:^[a-zA-Z]\w*))");
+			IdentifierRegex = RegexWrapper.DefaultWrap(@"(?:_+[a-zA-Z\d]\w*)|(?:[a-zA-Z]\w*)");
 		}
 	}
 }

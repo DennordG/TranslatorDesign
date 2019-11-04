@@ -10,7 +10,7 @@ namespace TranslatorDesign.Tokenizer
 		public TokenDefinition(TokenType returnsToken, string regexPattern)
 		{
 			_returnsToken = returnsToken;
-			_regex = new Regex(regexPattern);
+			_regex = new Regex(regexPattern, RegexOptions.Compiled);
 		}
 
 		public TokenMatch Match(string input)
@@ -31,7 +31,7 @@ namespace TranslatorDesign.Tokenizer
                     IsMatch = true,
                     RemainingText = remainingText,
                     TokenType = _returnsToken,
-                    Value = match.Value.Trim()
+                    Value = match.Value
 				};
 			}
 			else

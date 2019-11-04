@@ -9,7 +9,7 @@ namespace TranslatorDesign.Tests
 		[TestMethod]
 		public void TokenDefinition_IsInteger1()
 		{
-			var input = "123 + 11";
+			var input = "123+11";
 
 			var tokenDefinition = new TokenDefinition(TokenType.Integer, IntegerRegex);
 
@@ -17,7 +17,7 @@ namespace TranslatorDesign.Tests
 
             Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("123", match.Value);
-			Assert.AreEqual("+ 11", match.RemainingText);
+			Assert.AreEqual("+11", match.RemainingText);
 			Assert.AreEqual(TokenType.Integer, match.TokenType);
 		}
 
@@ -32,14 +32,14 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("0115", match.Value);
-			Assert.AreEqual("-1", match.RemainingText);
+			Assert.AreEqual(" -1", match.RemainingText);
 			Assert.AreEqual(TokenType.Integer, match.TokenType);
 		}
 
 		[TestMethod]
 		public void TokenDefinition_IsInteger3()
 		{
-			var input = "619949104146091346013403410946 ";
+			var input = "619949104146091346013403410946";
 
 			var tokenDefinition = new TokenDefinition(TokenType.Integer, IntegerRegex);
 
@@ -62,7 +62,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("1", match.Value);
-			Assert.AreEqual("2\n3\n4", match.RemainingText);
+			Assert.AreEqual("\n2\n3\n4", match.RemainingText);
 			Assert.AreEqual(TokenType.Integer, match.TokenType);
 		}
 	}

@@ -13,11 +13,14 @@ namespace TranslatorDesign.Tests
         [TestMethod]
         public void TokenDefinition_IsOperator1()
         {
-            string[] input = {
+            string[] input =
+			{
                 "( a + b ) / c"
             };
 
-            var tokenDefinition = new TokenDefinition(TokenType.SyntaxOperator, SyntaxProvider.GetPattern());
+			var syntaxRegex = RegexWrapper.DefaultWrap(SyntaxProvider.GetPattern());
+
+			var tokenDefinition = new TokenDefinition(TokenType.SyntaxOperator, syntaxRegex);
             var tokensGenerated = _tokenizer.Tokenize(input).ToList();
 
             var operatorTokens = tokensGenerated.Where(t => t.TokenType == TokenType.SyntaxOperator).ToList();
@@ -31,11 +34,14 @@ namespace TranslatorDesign.Tests
         [TestMethod]
         public void TokenDefinition_IsOperator2()
         {
-            string[] input = {
-                "{ 3 } "
+            string[] input =
+			{
+                "{ 3 }"
             };
 
-            var tokenDefinition = new TokenDefinition(TokenType.SyntaxOperator, SyntaxProvider.GetPattern());
+			var syntaxRegex = RegexWrapper.DefaultWrap(SyntaxProvider.GetPattern());
+
+			var tokenDefinition = new TokenDefinition(TokenType.SyntaxOperator, syntaxRegex);
             var tokensGenerated = _tokenizer.Tokenize(input).ToList();
 
             var operatorTokens = tokensGenerated.Where(t => t.TokenType == TokenType.SyntaxOperator).ToList();
@@ -49,12 +55,15 @@ namespace TranslatorDesign.Tests
         [TestMethod]
         public void TokenDefinition_IsOperator3()
         {
-            string[] input = {
-                "v [ 4 ] ",
+            string[] input =
+			{
+                "v [4]",
                 "x = 5"
             };
 
-            var tokenDefinition = new TokenDefinition(TokenType.SyntaxOperator, SyntaxProvider.GetPattern());
+			var syntaxRegex = RegexWrapper.DefaultWrap(SyntaxProvider.GetPattern());
+
+			var tokenDefinition = new TokenDefinition(TokenType.SyntaxOperator, syntaxRegex);
             var tokensGenerated = _tokenizer.Tokenize(input).ToList();
 
             var operatorTokens = tokensGenerated.Where(t => t.TokenType == TokenType.SyntaxOperator).ToList();
@@ -65,7 +74,6 @@ namespace TranslatorDesign.Tests
             Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == "]"));
             Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == "="));
         }
-
     }
 }
 

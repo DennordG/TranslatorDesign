@@ -9,7 +9,7 @@ namespace TranslatorDesign.Tests
 		[TestMethod]
 		public void TokenDefinition_IsString1()
 		{
-			var input = "\"asdf\\n\" ";
+			var input = "\"asdf\\n\"";
 
 			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
 
@@ -32,7 +32,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("\"another\\t\\n\\t\"", match.Value);
-			Assert.AreEqual("asdf", match.RemainingText);
+			Assert.AreEqual(" asdf", match.RemainingText);
 			Assert.AreEqual(TokenType.String, match.TokenType);
 		}
 
@@ -47,7 +47,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("\"another\\\\\"", match.Value);
-			Assert.AreEqual("asdf", match.RemainingText);
+			Assert.AreEqual(" asdf", match.RemainingText);
 			Assert.AreEqual(TokenType.String, match.TokenType);
 		}
 
@@ -62,7 +62,7 @@ namespace TranslatorDesign.Tests
 
 			Assert.IsTrue(match.IsMatch);
 			Assert.AreEqual("\"\\'\\'\"", match.Value);
-			Assert.AreEqual("asdf", match.RemainingText);
+			Assert.AreEqual(" asdf", match.RemainingText);
 			Assert.AreEqual(TokenType.String, match.TokenType);
 		}
 	}

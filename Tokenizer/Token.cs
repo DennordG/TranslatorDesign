@@ -2,7 +2,7 @@
 
 namespace TranslatorDesign.Tokenizer
 {
-    [DebuggerDisplay("{TokenType}")]
+    [DebuggerDisplay("{TokenType} : {Value}")]
     public class Token
 	{
 		public Token(TokenType tokenType)

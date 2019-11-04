@@ -4,7 +4,7 @@
     {
         public static string DefaultWrap(string pattern)
         {
-            return $@"^{pattern}\s+";
+            return $@"^(?:{pattern})";
         }
     }
 }

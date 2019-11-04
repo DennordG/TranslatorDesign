@@ -11,7 +11,9 @@ namespace TranslatorDesign.Tests
 		{
 			var input = "fake_int a=32;";
 
-			var tokenDefinition = new TokenDefinition(TokenType.Reserved, ReservedProvider.GetPattern());
+			var reservedRegex = RegexWrapper.DefaultWrap(ReservedProvider.GetPattern());
+
+			var tokenDefinition = new TokenDefinition(TokenType.Reserved, reservedRegex);
 
 			var match = tokenDefinition.Match(input);
 
@@ -26,7 +28,9 @@ namespace TranslatorDesign.Tests
 		{
 			var input = "boool a=32;";
 
-			var tokenDefinition = new TokenDefinition(TokenType.Reserved, ReservedProvider.GetPattern());
+			var reservedRegex = RegexWrapper.DefaultWrap(ReservedProvider.GetPattern());
+
+			var tokenDefinition = new TokenDefinition(TokenType.Reserved, reservedRegex);
 
 			var match = tokenDefinition.Match(input);
 
@@ -39,24 +43,11 @@ namespace TranslatorDesign.Tests
 		[TestMethod]
 		public void TokenDefinition_IsInvalid3()
 		{
-			var input = "returns a=32;";
-
-			var tokenDefinition = new TokenDefinition(TokenType.Reserved, ReservedProvider.GetPattern());
-
-			var match = tokenDefinition.Match(input);
-
-			Assert.IsFalse(match.IsMatch);
-			Assert.IsNull(match.Value);
-			Assert.IsNull(match.RemainingText);
-			Assert.AreEqual(TokenType.Invalid, match.TokenType);
-		}
-
-		[TestMethod]
-		public void TokenDefinition_IsInvalid4()
-		{
 			var input = "_gcd()";
 
-			var tokenDefinition = new TokenDefinition(TokenType.Reserved, ReservedProvider.GetPattern());
+			var reservedRegex = RegexWrapper.DefaultWrap(ReservedProvider.GetPattern());
+
+			var tokenDefinition = new TokenDefinition(TokenType.Reserved, reservedRegex);
 
 			var match = tokenDefinition.Match(input);
 
@@ -67,7 +58,7 @@ namespace TranslatorDesign.Tests
 		}
 
 		[TestMethod]
- 		public void TokenDefinition_IsInvalid5()
+ 		public void TokenDefinition_IsInvalid4()
 		{
 			var input = "123abc";
 
@@ -82,7 +73,7 @@ namespace TranslatorDesign.Tests
 		}
 
 		[TestMethod]
-		public void TokenDefinition_IsInvalid6()
+		public void TokenDefinition_IsInvalid5()
 		{
 			var input = "._.";
 
@@ -97,7 +88,7 @@ namespace TranslatorDesign.Tests
 		}
 
 		[TestMethod]
-		public void TokenDefinition_IsInvalid7()
+		public void TokenDefinition_IsInvalid6()
 		{
 			var input = @"\(^o^)/";
 
@@ -112,11 +103,26 @@ namespace TranslatorDesign.Tests
 		}
 
 		[TestMethod]
+		public void TokenDefinition_IsInvalid7()
+		{
+			var input = "\"asdf\\\"";
+
+			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
+
+			var match = tokenDefinition.Match(input);
+
+			Assert.IsFalse(match.IsMatch);
+			Assert.IsNull(match.Value);
+			Assert.IsNull(match.RemainingText);
+			Assert.AreEqual(TokenType.Invalid, match.TokenType);
+		}
+
+		[TestMethod]
 		public void TokenDefinition_IsInvalid8()
 		{
-			var input = @"false;";
+			var input = "\"test\\p\"";
 
-			var tokenDefinition = new TokenDefinition(TokenType.Reserved, ReservedProvider.GetPattern());
+			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
 
 			var match = tokenDefinition.Match(input);
 
@@ -129,7 +135,7 @@ namespace TranslatorDesign.Tests
 		[TestMethod]
 		public void TokenDefinition_IsInvalid9()
 		{
-			var input = "\"asdf\\\" ";
+			var input = "\"test\\n\\a\"";
 
 			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
 
@@ -144,9 +150,9 @@ namespace TranslatorDesign.Tests
 		[TestMethod]
 		public void TokenDefinition_IsInvalid10()
 		{
-			var input = "\"test\\p\" ";
+			var input = "_";
 
-			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
+			var tokenDefinition = new TokenDefinition(TokenType.Identifier, IdentifierRegex);
 
 			var match = tokenDefinition.Match(input);
 
@@ -159,9 +165,9 @@ namespace TranslatorDesign.Tests
 		[TestMethod]
 		public void TokenDefinition_IsInvalid11()
 		{
-			var input = "\"test\\n\\a\" ";
+			var input = "123asdf";
 
-			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
+			var tokenDefinition = new TokenDefinition(TokenType.Identifier, IdentifierRegex);
 
 			var match = tokenDefinition.Match(input);
 
@@ -174,52 +180,7 @@ namespace TranslatorDesign.Tests
 		[TestMethod]
 		public void TokenDefinition_IsInvalid12()
 		{
-			var input = "\"test\"\" ";
-
-			var tokenDefinition = new TokenDefinition(TokenType.String, StringRegex);
-
-			var match = tokenDefinition.Match(input);
-
-			Assert.IsFalse(match.IsMatch);
-			Assert.IsNull(match.Value);
-			Assert.IsNull(match.RemainingText);
-			Assert.AreEqual(TokenType.Invalid, match.TokenType);
-		}
-
-		[TestMethod]
-		public void TokenDefinition_IsInvalid13()
-		{
-			var input = "_ ";
-
-			var tokenDefinition = new TokenDefinition(TokenType.Identifier, IdentifierRegex);
-
-			var match = tokenDefinition.Match(input);
-
-			Assert.IsFalse(match.IsMatch);
-			Assert.IsNull(match.Value);
-			Assert.IsNull(match.RemainingText);
-			Assert.AreEqual(TokenType.Invalid, match.TokenType);
-		}
-
-		[TestMethod]
-		public void TokenDefinition_IsInvalid14()
-		{
-			var input = "123asdf ";
-
-			var tokenDefinition = new TokenDefinition(TokenType.Identifier, IdentifierRegex);
-
-			var match = tokenDefinition.Match(input);
-
-			Assert.IsFalse(match.IsMatch);
-			Assert.IsNull(match.Value);
-			Assert.IsNull(match.RemainingText);
-			Assert.AreEqual(TokenType.Invalid, match.TokenType);
-		}
-
-		[TestMethod]
-		public void TokenDefinition_IsInvalid15()
-		{
-			var input = "__ ";
+			var input = "__";
 
 			var tokenDefinition = new TokenDefinition(TokenType.Identifier, IdentifierRegex);
 

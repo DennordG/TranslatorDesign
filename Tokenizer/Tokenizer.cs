@@ -10,19 +10,26 @@ namespace TranslatorDesign.Tokenizer
 		private readonly List<TokenDefinition> _tokenDefinitions;
 
 		private const string StringPattern = "\"{1}(?:(?:[^\"\\\\]|(?:\\\\[tn\"'\\\\]))+)\"{1}";
-		private const string IdentifierPattern = @"(?:(?:^_+[a-zA-Z\d]\w*)|(?:^[a-zA-Z]\w*))";
-		private const string IntegerPattern = @"\d+";
+		private const string IdentifierPattern = @"(?:_+[a-zA-Z\d]\w*)|(?:[a-zA-Z]\w*)";
+		private const string IntegerPattern = @"\d+\b";
+
+		private readonly TokenDefinition RegexTokenDefinition;
 
 		public Tokenizer(ReservedRegexProvider reservedProvider, OperatorRegexProvider operatorProvider, SyntaxOperatorRegexProvider syntaxProvider)
 		{
+			var reservedPattern = reservedProvider.GetPattern();
+			RegexTokenDefinition = new TokenDefinition(TokenType.Reserved, RegexWrapper.DefaultWrap(reservedPattern));
+
+			var operatorPattern = operatorProvider.GetPattern();
+			var syntaxPattern = syntaxProvider.GetPattern();
+
 			_tokenDefinitions = new List<TokenDefinition>
 			{
-				new TokenDefinition(TokenType.Reserved, reservedProvider.GetPattern()),
-				new TokenDefinition(TokenType.Identifier, IdentifierPattern),
-				new TokenDefinition(TokenType.Integer, RegexWrapper.DefaultWrap(IntegerPattern)),
 				new TokenDefinition(TokenType.String, RegexWrapper.DefaultWrap(StringPattern)),
-				new TokenDefinition(TokenType.ArithmeticAndLogicOperator, operatorProvider.GetPattern()),
-				new TokenDefinition(TokenType.SyntaxOperator, syntaxProvider.GetPattern()),
+				new TokenDefinition(TokenType.Identifier, RegexWrapper.DefaultWrap(IdentifierPattern)),
+				new TokenDefinition(TokenType.Integer, RegexWrapper.DefaultWrap(IntegerPattern)),
+				new TokenDefinition(TokenType.ArithmeticAndLogicOperator, RegexWrapper.DefaultWrap(operatorPattern)),
+				new TokenDefinition(TokenType.SyntaxOperator, RegexWrapper.DefaultWrap(syntaxPattern)),
 			};
 		}
 
@@ -57,8 +64,6 @@ namespace TranslatorDesign.Tokenizer
                         remainingText = invalidTokenMatch.RemainingText;
                     }
                 }
-
-                tokens.Add(new Token(TokenType.SequenceTerminator, string.Empty));
             }
 
 			return tokens;
@@ -98,6 +103,15 @@ namespace TranslatorDesign.Tokenizer
 				var match = tokenDefinition.Match(text);
 				if (match.IsMatch)
 				{
+					if (match.TokenType == TokenType.Identifier)
+					{
+						var reservedMatch = RegexTokenDefinition.Match(text);
+
+						var isReserved = reservedMatch.IsMatch && reservedMatch.Value.Length == match.Value.Length;
+
+						return isReserved ? reservedMatch : match;
+					}
+
 					return match;
 				}
 			}

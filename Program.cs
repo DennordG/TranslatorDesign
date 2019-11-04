@@ -32,6 +32,7 @@ namespace TranslatorDesign
                 if(inputFile.FileContent != null)
                 {
                     var tokenizer = new Tokenizer.Tokenizer(new ReservedRegexProvider(), new OperatorRegexProvider(), new SyntaxOperatorRegexProvider());
+
                     tokens = tokenizer.Tokenize(inputFile.FileContent);
                 }
             }
