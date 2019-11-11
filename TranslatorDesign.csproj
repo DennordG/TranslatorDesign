@@ -60,6 +60,15 @@
   <ItemGroup>
     <Compile Include="Helpers\InputFileForValidation.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Syntax\EmptyFragment.cs" />
+    <Compile Include="Syntax\Grammar.cs" />
+    <Compile Include="Syntax\GrammarFragment.cs" />
+    <Compile Include="Syntax\RecursiveFragment.cs" />
+    <Compile Include="Syntax\TokenTypeFragment.cs" />
+    <Compile Include="Syntax\ValueFragment.cs" />
+    <Compile Include="Syntax\IGrammarFragment.cs" />
+    <Compile Include="Syntax\Parser.cs" />
+    <Compile Include="Syntax\GrammarType.cs" />
     <Compile Include="Tests\AbstractTokenDefinitionTests.cs" />
     <Compile Include="Tests\IdentifierTokenDefinitionTests.cs" />
     <Compile Include="Tests\IntegerTokenDefinitionTests.cs" />
