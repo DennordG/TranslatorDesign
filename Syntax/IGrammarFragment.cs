@@ -3,8 +3,8 @@ using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
-	public interface IGrammarFragment
-	{
-		bool IsValid(Stack<Token> tokens);
-	}
+    public interface IGrammarFragment
+    {
+        bool Validate(Stack<Token> tokens);
+    }
 }

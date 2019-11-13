@@ -3,11 +3,11 @@ using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
-	public class EmptyFragment : IGrammarFragment
-	{
-		public bool IsValid(Stack<Token> tokens)
-		{
-			return true;
-		}
-	}
+    public class EmptyFragment : IGrammarFragment
+    {
+        public bool Validate(Stack<Token> tokens)
+        {
+            return true;
+        }
+    }
 }

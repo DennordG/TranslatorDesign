@@ -63,6 +63,8 @@
     <Compile Include="Syntax\EmptyFragment.cs" />
     <Compile Include="Syntax\Grammar.cs" />
     <Compile Include="Syntax\GrammarFragment.cs" />
+    <Compile Include="Syntax\GrammarRulesProvider.cs" />
+    <Compile Include="Syntax\IGrammarRulesProvider.cs" />
     <Compile Include="Syntax\RecursiveFragment.cs" />
     <Compile Include="Syntax\TokenTypeFragment.cs" />
     <Compile Include="Syntax\ValueFragment.cs" />
