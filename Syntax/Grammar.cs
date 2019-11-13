@@ -19,7 +19,7 @@ namespace TranslatorDesign.Syntax
         {
             var ruleSet = _grammarRules[_mainPoint];
 
-            return ruleSet.Any(r => r.Validate(tokenStack));
+            return ruleSet.Any(r => r.Validate(tokenStack) && tokenStack.Count == 0);
         }
     }
 }

@@ -36,10 +36,8 @@ namespace TranslatorDesign.Syntax
                 }
             }
 
-            if (tokens.Count != tokensCopy.Count)
+            if (foundResult)
             {
-                foundResult = true;
-
                 while (tokens.Count > tokensCopy.Count)
                 {
                     tokens.Pop();
