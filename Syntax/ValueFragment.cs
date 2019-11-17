@@ -14,22 +14,16 @@ namespace TranslatorDesign.Syntax
             _expectedValue = expectedValue;
         }
 
-        public bool Validate(Stack<Token> tokens)
+        public bool Validate(Stack<Token> tokens, SyntaxNode syntaxNode)
         {
-            try
+            if (tokens.Count > 0 && _expectedValue == tokens.Peek().Value)
             {
-                if (_expectedValue == tokens.Peek().Value)
-                {
-                    tokens.Pop();
-                    return true;
-                }
+				syntaxNode.AddChild(new SyntaxNode(tokens.Pop().Value));
 
-                return false;
+                return true;
             }
-            catch
-            {
-                return false;
-            }
+
+            return false;
         }
     }
 }

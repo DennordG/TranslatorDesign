@@ -13,11 +13,15 @@ namespace TranslatorDesign.Syntax
             _grammar = grammar;
         }
 
-        public bool Parse(IEnumerable<Token> tokens)
-        {
-            var tokenStack = new Stack<Token>(tokens.Reverse());
+        public (bool couldParse, SyntaxTree syntaxTree) Parse(IEnumerable<Token> tokens)
+		{
+			var syntaxTree = new SyntaxTree(new SyntaxNode(GrammarType.Program));
+			var tokenStack = new Stack<Token>(tokens.Reverse());
 
-            return _grammar.Validate(tokenStack);
+			return (
+				_grammar.Validate(tokenStack, syntaxTree),
+				syntaxTree
+			);
         }
     }
 }

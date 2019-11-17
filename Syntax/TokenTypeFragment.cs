@@ -4,32 +4,26 @@ using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
-    [DebuggerDisplay("{_tokenType}")]
-    public class TokenTypeFragment : IGrammarFragment
-    {
-        private readonly TokenType _tokenType;
+	[DebuggerDisplay("{_tokenType}")]
+	public class TokenTypeFragment : IGrammarFragment
+	{
+		private readonly TokenType _tokenType;
 
-        public TokenTypeFragment(TokenType tokenType)
-        {
-            _tokenType = tokenType;
-        }
+		public TokenTypeFragment(TokenType tokenType)
+		{
+			_tokenType = tokenType;
+		}
 
-        public bool Validate(Stack<Token> tokens)
-        {
-            try
-            {
-                if (_tokenType == tokens.Peek().TokenType)
-                {
-                    tokens.Pop();
-                    return true;
-                }
+		public bool Validate(Stack<Token> tokens, SyntaxNode syntaxNode)
+		{
+			if (tokens.Count > 0 && _tokenType == tokens.Peek().TokenType)
+			{
+				syntaxNode.AddChild(new SyntaxNode(tokens.Pop().TokenType));
 
-                return false;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-    }
+				return true;
+			}
+
+			return false;
+		}
+	}
 }

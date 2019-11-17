@@ -7,19 +7,19 @@ namespace TranslatorDesign.Syntax
 {
     [DebuggerDisplay("{_grammarFragments}")]
     public class GrammarFragment : IGrammarFragment
-    {
-        private readonly IEnumerable<IGrammarFragment> _grammarFragments;
+	{
+		private readonly IEnumerable<IGrammarFragment> _grammarFragments;
 
-        public GrammarFragment(IEnumerable<IGrammarFragment> grammarFragments)
-        {
-            _grammarFragments = grammarFragments;
-        }
+		public GrammarFragment(IEnumerable<IGrammarFragment> grammarFragments)
+		{
+			_grammarFragments = grammarFragments;
+		}
 
-        public bool Validate(Stack<Token> tokens)
+        public bool Validate(Stack<Token> tokens, SyntaxNode syntaxNode)
         {
             var tokensCopy = new Stack<Token>(tokens.Reverse());
 
-            if (_grammarFragments.Any(f => !f.Validate(tokensCopy)))
+            if (_grammarFragments.Any(f => !f.Validate(tokensCopy, syntaxNode)))
             {
                 return false;
             }

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\InputFileForValidation.cs" />
+    <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Syntax\EmptyFragment.cs" />
     <Compile Include="Syntax\Grammar.cs" />
@@ -66,6 +67,8 @@
     <Compile Include="Syntax\GrammarRulesProvider.cs" />
     <Compile Include="Syntax\IGrammarRulesProvider.cs" />
     <Compile Include="Syntax\RecursiveFragment.cs" />
+    <Compile Include="Syntax\SyntaxNode.cs" />
+    <Compile Include="Syntax\SyntaxTree.cs" />
     <Compile Include="Syntax\TokenTypeFragment.cs" />
     <Compile Include="Syntax\ValueFragment.cs" />
     <Compile Include="Syntax\IGrammarFragment.cs" />

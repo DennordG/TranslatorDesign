@@ -4,7 +4,7 @@ using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
-    public class Grammar
+	public class Grammar
     {
         private readonly IDictionary<GrammarType, IEnumerable<IGrammarFragment>> _grammarRules;
         private readonly GrammarType _mainPoint;
@@ -15,11 +15,11 @@ namespace TranslatorDesign.Syntax
             _mainPoint = grammarRulesProvider.GetMainGrammarType();
         }
 
-        public bool Validate(Stack<Token> tokenStack)
+        public bool Validate(Stack<Token> tokenStack, SyntaxTree syntaxTree)
         {
             var ruleSet = _grammarRules[_mainPoint];
 
-            return ruleSet.Any(r => r.Validate(tokenStack) && tokenStack.Count == 0);
+			return ruleSet.Any(r => r.Validate(tokenStack, syntaxTree.Root) && tokenStack.Count == 0);
         }
     }
 }
