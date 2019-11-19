@@ -59,7 +59,6 @@ namespace TranslatorDesign
 
 			syntaxTree.Print();
             Console.ReadKey();
-
         }
 	}
 }

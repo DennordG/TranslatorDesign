@@ -75,7 +75,7 @@
     <Compile Include="Syntax\Parser.cs" />
     <Compile Include="Syntax\GrammarType.cs" />
     <Compile Include="Tests\AbstractTokenDefinitionTests.cs" />
-    <Compile Include="Tests\GrammarTests.cs" />
+    <Compile Include="Tests\ParserTests.cs" />
     <Compile Include="Tests\IdentifierTokenDefinitionTests.cs" />
     <Compile Include="Tests\IntegerTokenDefinitionTests.cs" />
     <Compile Include="Tests\InvalidTokenDefinitionTests.cs" />

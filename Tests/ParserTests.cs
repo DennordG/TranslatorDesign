@@ -1,19 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TranslatorDesign.Syntax;
 using TranslatorDesign.Tokenizer;
 using TranslatorDesign.Tokenizer.RegexProvider;
 
 namespace TranslatorDesign.Tests
 {
-    [TestClass]
+	[TestClass]
     public class ParserTests
     {
-        Tokenizer.Tokenizer tokenizer = new Tokenizer.Tokenizer(
+		readonly Tokenizer.Tokenizer tokenizer = new Tokenizer.Tokenizer(
                 new ReservedRegexProvider(),
                 new OperatorRegexProvider(),
                 new SyntaxOperatorRegexProvider()

@@ -275,6 +275,75 @@ namespace TranslatorDesign.Syntax
 			};
 		}
 
+		private IEnumerable<IGrammarFragment> CreateOrOrOperatorGrammar()
+		{
+			return new List<IGrammarFragment>
+			{
+				new ValueFragment("||"),
+			};
+		}
+
+		private IEnumerable<IGrammarFragment> CreateAndAndOperatorGrammar()
+		{
+			return new List<IGrammarFragment>
+			{
+				new ValueFragment("&&"),
+			};
+		}
+
+		private IEnumerable<IGrammarFragment> CreateComparisonOperatorGrammar()
+		{
+			return new List<IGrammarFragment>
+			{
+				new ValueFragment("=="),
+				new ValueFragment("!="),
+				new ValueFragment("<"),
+				new ValueFragment(">"),
+				new ValueFragment("<="),
+				new ValueFragment(">="),
+			};
+		}
+
+		private IEnumerable<IGrammarFragment> CreatePlusMinusOperatorGrammar()
+		{
+			return new List<IGrammarFragment>
+			{
+				new ValueFragment("+"),
+				new ValueFragment("-"),
+			};
+		}
+
+		private IEnumerable<IGrammarFragment> CreateMultDivOperatorGrammar()
+		{
+			return new List<IGrammarFragment>
+			{
+				new ValueFragment("*"),
+				new ValueFragment("/"),
+			};
+		}
+
+		private IEnumerable<IGrammarFragment> CreateUnaryOperatorGrammar()
+		{
+			return new List<IGrammarFragment>
+			{
+				new ValueFragment("!"),
+				new ValueFragment("-"),
+			};
+		}
+
+		private IEnumerable<IGrammarFragment> CreateOperatorsGrammar()
+		{
+			return new List<IGrammarFragment>
+			{
+				new RecursiveFragment(GrammarType.Exp, CreateOrOrOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.Exp, CreateAndAndOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.Exp, CreateComparisonOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.Exp, CreatePlusMinusOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.Exp, CreateMultDivOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.Exp, CreateUnaryOperatorGrammar, addNewNode: false),
+			};
+		}
+
 		private IEnumerable<IGrammarFragment> CreateExp1Grammar()
 		{
 			return new List<IGrammarFragment>
@@ -282,7 +351,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp2Grammar),
-					new ValueFragment("||"),
+					new RecursiveFragment(GrammarType.Exp, CreateOrOrOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp2Grammar)
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp2Grammar, addNewNode: false)
@@ -296,7 +365,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp3Grammar),
-					new ValueFragment("&&"),
+					new RecursiveFragment(GrammarType.Exp, CreateAndAndOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp3Grammar),
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp3Grammar, addNewNode: false)
@@ -310,37 +379,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-					new ValueFragment("=="),
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-					new ValueFragment("!="),
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-					new ValueFragment("<"),
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-					new ValueFragment(">"),
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-					new ValueFragment("<="),
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-					new ValueFragment(">="),
+					new RecursiveFragment(GrammarType.Exp, CreateComparisonOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar, addNewNode: false)
@@ -354,13 +393,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp5Grammar),
-					new ValueFragment("+"),
-					new RecursiveFragment(GrammarType.Exp, CreateExp5Grammar),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new RecursiveFragment(GrammarType.Exp, CreateExp5Grammar),
-					new ValueFragment("-"),
+					new RecursiveFragment(GrammarType.Exp, CreatePlusMinusOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp5Grammar),
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp5Grammar, addNewNode: false)
@@ -374,13 +407,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp6Grammar),
-					new ValueFragment("*"),
-					new RecursiveFragment(GrammarType.Exp, CreateExp6Grammar),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new RecursiveFragment(GrammarType.Exp, CreateExp6Grammar),
-					new ValueFragment("/"),
+					new RecursiveFragment(GrammarType.Exp, CreateMultDivOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp6Grammar),
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp6Grammar, addNewNode: false)
@@ -393,12 +420,7 @@ namespace TranslatorDesign.Syntax
 			{
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new ValueFragment("!"),
-					new RecursiveFragment(GrammarType.Atom, CreateAtomGrammar),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("-"),
+					new RecursiveFragment(GrammarType.Atom, CreateUnaryOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Atom, CreateAtomGrammar),
 				}),
 				new RecursiveFragment(GrammarType.Atom, CreateAtomGrammar, addNewNode: false)
@@ -411,73 +433,7 @@ namespace TranslatorDesign.Syntax
 			{
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new ValueFragment("||"),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("&&"),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("=="),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("!="),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("<"),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment(">"),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("<="),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment(">="),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("+"),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("-"),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("*"),
-					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
-				}),
-				new GrammarFragment(new List<IGrammarFragment>
-				{
-					new ValueFragment("/"),
+					new RecursiveFragment(GrammarType.Exp, CreateOperatorsGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
 					new RecursiveFragment(GrammarType.Exp, CreateExpSecondGrammar, addNewNode: false),
 				}),
