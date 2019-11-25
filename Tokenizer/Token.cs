@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 
 namespace TranslatorDesign.Tokenizer
 {
-    [DebuggerDisplay("{TokenType} : {Value}")]
-    public class Token
+	[DebuggerDisplay("{TokenType} : {Value}")]
+	public class Token
 	{
 		public Token(TokenType tokenType)
 		{
@@ -20,9 +21,9 @@ namespace TranslatorDesign.Tokenizer
 		public TokenType TokenType { get; }
 		public string Value { get; set; }
 
-		public Token Clone()
+		public bool IsPunctuation()
 		{
-			return new Token(TokenType, Value);
+			return Value.All(char.IsPunctuation);
 		}
 	}
 }

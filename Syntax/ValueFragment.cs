@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using TranslatorDesign.Tokenizer;
+using TranslatorDesign.Tokenizer.RegexProvider;
 
 namespace TranslatorDesign.Syntax
 {
@@ -18,7 +20,11 @@ namespace TranslatorDesign.Syntax
         {
             if (tokens.Count > 0 && _expectedValue == tokens.Peek().Value)
             {
-				syntaxNode.AddChild(new SyntaxNode(tokens.Pop().Value));
+				var token = tokens.Pop();
+				if (!token.IsPunctuation())
+				{
+					syntaxNode.AddChild(new SyntaxNode(token.Value));
+				}
 
                 return true;
             }
