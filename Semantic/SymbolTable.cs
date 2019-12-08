@@ -33,5 +33,12 @@ namespace TranslatorDesign.Semantic
 		{
 			return _table.ContainsKey(depth) && _table[depth].Contains(value);
 		}
+
+		public void Clear(int depth)
+		{
+			var removedKeys = _table.Keys.Where(d => d >= depth).ToList();
+
+			removedKeys.ForEach(k => _table.Remove(k));
+		}
 	}
 }

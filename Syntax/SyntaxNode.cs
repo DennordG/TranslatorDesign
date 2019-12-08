@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
@@ -10,10 +10,11 @@ namespace TranslatorDesign.Syntax
 		public IList<SyntaxNode> Children { get; }
 
 		public GrammarType? GrammarType;
-		public string Value;
+		public readonly string Value;
 
 		public int Depth;
 
+		public SyntaxNode Parent { get; private set; }
 
 		#region ctor
 		private SyntaxNode()
@@ -40,6 +41,7 @@ namespace TranslatorDesign.Syntax
 		{
 			node.Depth = Depth + 1;
 			Children.Add(node);
+			node.Parent = this;
 		}
 
 		public void ClearChildren()
@@ -59,11 +61,12 @@ namespace TranslatorDesign.Syntax
 			Children.Remove(node);
 		}
 
-		public void AddChildrenFrom(SyntaxNode node)
+		public void AddCopyChildrenFrom(SyntaxNode node)
 		{
 			foreach (var child in node.Children)
 			{
-				Children.Add(child);
+				Children.Add(child.ShallowCopy());
+				Children.Last().Parent = this;
 			}
 		}
 		#endregion
@@ -110,6 +113,11 @@ namespace TranslatorDesign.Syntax
 			}
 
 			Depth += add;
+		}
+
+		private SyntaxNode ShallowCopy()
+		{
+			return (SyntaxNode)MemberwiseClone();
 		}
 		#endregion
 	}

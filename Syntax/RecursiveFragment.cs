@@ -47,7 +47,7 @@ namespace TranslatorDesign.Syntax
 				if (!_addNewNode)
 				{
 					recursiveNode.AddDepth(-1);
-					syntaxNode.AddChildrenFrom(recursiveNode);
+					syntaxNode.AddCopyChildrenFrom(recursiveNode);
 					syntaxNode.Children.Remove(recursiveNode);
 				}
 
