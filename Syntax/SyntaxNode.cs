@@ -28,16 +28,16 @@ namespace TranslatorDesign.Syntax
 			GrammarType = grammarType;
 		}
 
-		public SyntaxNode(TokenType tokenType)
-			: this()
-		{
-			TokenType = tokenType;
-		}
-
 		public SyntaxNode(string value)
 			: this()
 		{
 			Value = value;
+		}
+
+		public SyntaxNode(TokenType tokenType, string value)
+			: this(value)
+		{
+			TokenType = tokenType;
 		}
 		#endregion
 

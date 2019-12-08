@@ -19,7 +19,7 @@ namespace TranslatorDesign.Syntax
 			if (tokens.Count > 0 && _tokenType == tokens.Peek().TokenType)
 			{
 				var token = tokens.Pop();
-				syntaxNode.AddChild(new SyntaxNode(token.TokenType));
+				syntaxNode.AddChild(new SyntaxNode(token.TokenType, token.Value));
 
 				return true;
 			}

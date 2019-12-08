@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 
 namespace TranslatorDesign.Tokenizer
 {
@@ -22,7 +21,7 @@ namespace TranslatorDesign.Tokenizer
 
 		public bool IsPunctuation()
 		{
-			return Value.All(char.IsPunctuation);
+			return IgnoredPunctuation.Contains(Value);
 		}
 	}
 }

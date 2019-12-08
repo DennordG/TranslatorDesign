@@ -81,6 +81,7 @@
     <Compile Include="Tests\OperatorTokenDefinitionTests.cs" />
     <Compile Include="Tests\StringTokenDefinitionTests.cs" />
     <Compile Include="Tests\SyntaxTokenDefinitionTests.cs" />
+    <Compile Include="Tokenizer\IgnoredPunctuation.cs" />
     <Compile Include="Tokenizer\RegexProvider\AbstractRegexProvider.cs" />
     <Compile Include="Tokenizer\RegexProvider\OperatorRegexProvider.cs" />
     <Compile Include="Tokenizer\RegexWrapper.cs" />
