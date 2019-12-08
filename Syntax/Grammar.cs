@@ -6,20 +6,16 @@ namespace TranslatorDesign.Syntax
 {
 	public class Grammar
     {
-        private readonly IDictionary<GrammarType, IEnumerable<IGrammarFragment>> _grammarRules;
-        private readonly GrammarType _mainPoint;
+	    private readonly IEnumerable<IGrammarFragment> _mainRuleSet;
 
-        public Grammar(IGrammarRulesProvider grammarRulesProvider)
+	    public Grammar(IGrammarRulesProvider grammarRulesProvider)
         {
-            _grammarRules = grammarRulesProvider.GetRules();
-            _mainPoint = grammarRulesProvider.GetMainGrammarType();
+	        _mainRuleSet = grammarRulesProvider.GetStartingGrammarRules();
         }
 
         public bool Validate(Stack<Token> tokenStack, SyntaxTree syntaxTree)
         {
-            var ruleSet = _grammarRules[_mainPoint];
-
-			return ruleSet.Any(r => r.Validate(tokenStack, syntaxTree.Root) && tokenStack.Count == 0);
+			return _mainRuleSet.Any(r => r.Validate(tokenStack, syntaxTree.Root) && tokenStack.Count == 0);
         }
     }
 }

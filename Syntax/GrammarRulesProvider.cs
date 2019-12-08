@@ -5,36 +5,10 @@ namespace TranslatorDesign.Syntax
 {
 	public class GrammarRulesProvider : IGrammarRulesProvider
 	{
-		public IDictionary<GrammarType, IEnumerable<IGrammarFragment>> GetRules()
+		public IEnumerable<IGrammarFragment> GetStartingGrammarRules()
 		{
-			return new Dictionary<GrammarType, IEnumerable<IGrammarFragment>>
-			{
-				{ GrammarType.Program, CreateProgramGrammar() },
-				{ GrammarType.VarDecl, CreateVarDeclGrammar() },
-				{ GrammarType.FnDecl, CreateFnDeclGrammar() },
-				{ GrammarType.Parameters, CreateParametersGrammar() },
-				{ GrammarType.FormalsList, CreateFormalsListGrammar() },
-				{ GrammarType.FormalDecl, CreateFormalDeclGrammar() },
-				{ GrammarType.Block, CreateBlockGrammar() },
-				{ GrammarType.DeclList, CreateDeclListGrammar() },
-				{ GrammarType.StmtList, CreateStmtListGrammar() },
-				{ GrammarType.Stmt, CreateStmtGrammar() },
-				{ GrammarType.Exp, CreateExpGrammar() },
-				{ GrammarType.Atom, CreateAtomGrammar() },
-				{ GrammarType.FnCallExpr, CreateFnCallExprGrammar() },
-				{ GrammarType.FnCallStmt, CreateFnCallStmtGrammar() },
-				{ GrammarType.ActualList, CreateActualListGrammar() },
-				{ GrammarType.SubscriptExpr, CreateSubscriptExprGrammar() },
-				{ GrammarType.Type, CreateTypeGrammar() },
-				{ GrammarType.Id, CreateIdGrammar() },
-			};
+			return CreateProgramGrammar();
 		}
-
-		public GrammarType GetMainGrammarType()
-		{
-			return GrammarType.Program;
-		}
-
 
 		#region Grammar creation rules
 		private IEnumerable<IGrammarFragment> CreateProgramGrammar()
@@ -62,13 +36,13 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Type, CreateTypeGrammar),
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdDecl, CreateIdGrammar),
 					new ValueFragment(";")
 				}),
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Type, CreateTypeGrammar),
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdDecl, CreateIdGrammar),
 					new ValueFragment("["),
 					new TokenTypeFragment(TokenType.Integer),
 					new ValueFragment("]"),
@@ -94,7 +68,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Type, CreateTypeGrammar),
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdDecl, CreateIdGrammar),
 					new RecursiveFragment(GrammarType.Parameters, CreateParametersGrammar),
 					new RecursiveFragment(GrammarType.Block, CreateBlockGrammar)
 				})
@@ -143,7 +117,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Type, CreateTypeGrammar),
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar)
+					new RecursiveFragment(GrammarType.IdDecl, CreateIdGrammar)
 				})
 			};
 		}
@@ -196,14 +170,14 @@ namespace TranslatorDesign.Syntax
 				{
 					new ValueFragment("cin"),
 					new ValueFragment(">>"),
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar),
 					new ValueFragment(";")
 				}),
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new ValueFragment("cin"),
 					new ValueFragment(">>"),
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar),
 					new ValueFragment("["),
 					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
 					new ValueFragment("]"),
@@ -225,7 +199,7 @@ namespace TranslatorDesign.Syntax
 				}),
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar),
 					new ValueFragment("="),
 					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
 					new ValueFragment(";")
@@ -469,7 +443,7 @@ namespace TranslatorDesign.Syntax
 				}),
 				new RecursiveFragment(GrammarType.FnCallExpr, CreateFnCallExprGrammar),
 				new RecursiveFragment(GrammarType.SubscriptExpr, CreateSubscriptExprGrammar),
-				new RecursiveFragment(GrammarType.Id, CreateIdGrammar)
+				new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar)
 			};
 		}
 
@@ -479,13 +453,13 @@ namespace TranslatorDesign.Syntax
 			{
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar),
 					new ValueFragment("("),
 					new ValueFragment(")")
 				}),
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar),
 					new ValueFragment("("),
 					new RecursiveFragment(GrammarType.ActualList, CreateActualListGrammar),
 					new ValueFragment(")")
@@ -499,13 +473,13 @@ namespace TranslatorDesign.Syntax
 			{
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar),
 					new ValueFragment("("),
 					new ValueFragment(")")
 				}),
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar),
 					new ValueFragment("("),
 					new RecursiveFragment(GrammarType.ActualList, CreateActualListGrammar),
 					new ValueFragment(")")
@@ -536,7 +510,7 @@ namespace TranslatorDesign.Syntax
 			{
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
+					new RecursiveFragment(GrammarType.IdUse, CreateIdGrammar),
 					new ValueFragment("["),
 					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
 					new ValueFragment("]")

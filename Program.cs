@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Linq;
 using TranslatorDesign.Helpers;
+using TranslatorDesign.Semantic;
 using TranslatorDesign.Syntax;
 using TranslatorDesign.Tokenizer;
 using TranslatorDesign.Tokenizer.RegexProvider;
@@ -56,6 +57,9 @@ namespace TranslatorDesign
 			}
 
 			syntaxTree.Print();
-        }
+
+			var semanticAnalyzer = new SemanticAnalyzer();
+			semanticAnalyzer.ValidateAndThrow(syntaxTree);
+		}
 	}
 }

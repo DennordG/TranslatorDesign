@@ -4,8 +4,6 @@ namespace TranslatorDesign.Syntax
 {
     public interface IGrammarRulesProvider
     {
-        IDictionary<GrammarType, IEnumerable<IGrammarFragment>> GetRules();
-
-        GrammarType GetMainGrammarType();
+        IEnumerable<IGrammarFragment> GetStartingGrammarRules();
     }
 }

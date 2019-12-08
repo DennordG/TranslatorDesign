@@ -19,6 +19,7 @@
 		FnCallStmt,
 		ActualList,
 		SubscriptExpr,
-		Id
+		IdDecl,
+		IdUse
 	}
 }

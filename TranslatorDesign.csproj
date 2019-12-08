@@ -60,6 +60,9 @@
   <ItemGroup>
     <Compile Include="Helpers\InputFileForValidation.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Semantic\NameAnalyzer.cs" />
+    <Compile Include="Semantic\SemanticAnalyzer.cs" />
+    <Compile Include="Semantic\SymbolTable.cs" />
     <Compile Include="Syntax\EmptyFragment.cs" />
     <Compile Include="Syntax\Grammar.cs" />
     <Compile Include="Syntax\GrammarFragment.cs" />

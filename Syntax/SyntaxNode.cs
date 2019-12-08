@@ -10,7 +10,6 @@ namespace TranslatorDesign.Syntax
 		public IList<SyntaxNode> Children { get; }
 
 		public GrammarType? GrammarType;
-		public TokenType? TokenType;
 		public string Value;
 
 		public int Depth;
@@ -32,12 +31,6 @@ namespace TranslatorDesign.Syntax
 			: this()
 		{
 			Value = value;
-		}
-
-		public SyntaxNode(TokenType tokenType, string value)
-			: this(value)
-		{
-			TokenType = tokenType;
 		}
 		#endregion
 
@@ -106,7 +99,7 @@ namespace TranslatorDesign.Syntax
 
 		private string StringRepr()
 		{
-			return Value ?? GrammarType?.ToString() ?? TokenType?.ToString();
+			return Value ?? GrammarType?.ToString();
 		}
 
 		public void AddDepth(int add)
