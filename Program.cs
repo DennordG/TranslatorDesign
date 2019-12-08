@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Configuration;
 using System.Linq;
 using TranslatorDesign.Helpers;
@@ -13,12 +12,11 @@ namespace TranslatorDesign
 	{
 		public static void Main(string[] args)
 		{
-			NameValueCollection appSettings;
 			string pathInputFile;
 
 			try
 			{
-				appSettings = ConfigurationManager.AppSettings;
+				var appSettings = ConfigurationManager.AppSettings;
 				pathInputFile = appSettings["InputFilePath"];
 			}
 			catch (ConfigurationErrorsException)

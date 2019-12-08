@@ -6,7 +6,7 @@ using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
-    [DebuggerDisplay("{_grammarType}")]
+    [DebuggerDisplay("{" + nameof(_grammarType) + "}")]
     public class RecursiveFragment : IGrammarFragment
     {
         private readonly GrammarType _grammarType;

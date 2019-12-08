@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\InputFileForValidation.cs" />
-    <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Syntax\EmptyFragment.cs" />
     <Compile Include="Syntax\Grammar.cs" />

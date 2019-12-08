@@ -8,7 +8,7 @@
             {
                 @"\<\<", @"\>\>", // bit-wise operations
                 @"\<=", @"\>=", "!=", "==", @"\<", @"\>", // comparison
-                @"\+", "-", @"\*", "/", // arithemtic
+                @"\+", "-", @"\*", "/", // arithmetic
                 "!", "&&", @"\|\|", // logical operations
             };
         }

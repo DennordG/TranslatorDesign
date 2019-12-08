@@ -4,7 +4,7 @@ using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
-	[DebuggerDisplay("{_tokenType}")]
+	[DebuggerDisplay("{" + nameof(_tokenType) + "}")]
 	public class TokenTypeFragment : IGrammarFragment
 	{
 		private readonly TokenType _tokenType;

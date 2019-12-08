@@ -6,7 +6,7 @@ namespace TranslatorDesign.Syntax
 {
     public class Parser
     {
-        private Grammar _grammar;
+        private readonly Grammar _grammar;
 
         public Parser(Grammar grammar)
         {

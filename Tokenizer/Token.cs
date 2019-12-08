@@ -9,12 +9,11 @@ namespace TranslatorDesign.Tokenizer
 		public Token(TokenType tokenType)
 		{
 			TokenType = tokenType;
-			Value = string.Empty;
 		}
 
 		public Token(TokenType tokenType, string value)
+			: this(tokenType)
 		{
-			TokenType = tokenType;
 			Value = value;
 		}
 

@@ -8,7 +8,7 @@ namespace TranslatorDesign.Tests
     [TestClass]
     public class OperatorTokenDefinitionTests : AbstractTokenDefinitionTests
     {
-        private Tokenizer.Tokenizer _tokenizer = new Tokenizer.Tokenizer(new ReservedRegexProvider(), new OperatorRegexProvider(), new SyntaxOperatorRegexProvider());
+        private readonly Tokenizer.Tokenizer _tokenizer = new Tokenizer.Tokenizer(new ReservedRegexProvider(), new OperatorRegexProvider(), new SyntaxOperatorRegexProvider());
 
         [TestMethod]
         public void TokenDefinition_IsOperator_Logic()
@@ -19,15 +19,12 @@ namespace TranslatorDesign.Tests
                 "1 << 7"
             };
 
-			var operatorRegex = RegexWrapper.DefaultWrap(OperatorProvider.GetPattern());
-
-			var tokenDefinition = new TokenDefinition(TokenType.ArithmeticAndLogicOperator, operatorRegex);
             var tokensGenerated = _tokenizer.Tokenize(input).ToList();
 
             var operatorTokens = tokensGenerated.Where(t => t.TokenType == TokenType.ArithmeticAndLogicOperator).ToList();
 
             Assert.IsTrue(operatorTokens.Any());
-            Assert.AreEqual(2, operatorTokens.Count());
+            Assert.AreEqual(2, operatorTokens.Count);
             Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == "!"));
             Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == "<<"));
         }
@@ -41,15 +38,12 @@ namespace TranslatorDesign.Tests
                 "=="
             };
 
-			var operatorRegex = RegexWrapper.DefaultWrap(OperatorProvider.GetPattern());
-
-			var tokenDefinition = new TokenDefinition(TokenType.ArithmeticAndLogicOperator, operatorRegex);
             var tokensGenerated = _tokenizer.Tokenize(input).ToList();
 
             var operatorTokens = tokensGenerated.Where(t => t.TokenType == TokenType.ArithmeticAndLogicOperator).ToList();
 
             Assert.IsTrue(operatorTokens.Any());
-            Assert.AreEqual(2, operatorTokens.Count());
+            Assert.AreEqual(2, operatorTokens.Count);
             Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == "*"));
             Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == "=="));
         }
@@ -63,15 +57,12 @@ namespace TranslatorDesign.Tests
                 "<= !"
             };
 
-			var operatorRegex = RegexWrapper.DefaultWrap(OperatorProvider.GetPattern());
-
-			var tokenDefinition = new TokenDefinition(TokenType.ArithmeticAndLogicOperator, operatorRegex);
             var tokensGenerated = _tokenizer.Tokenize(input).ToList();
 
             var operatorTokens = tokensGenerated.Where(t => t.TokenType == TokenType.ArithmeticAndLogicOperator).ToList();
 
             Assert.IsTrue(operatorTokens.Any());
-            Assert.AreEqual(3, operatorTokens.Count());
+            Assert.AreEqual(3, operatorTokens.Count);
             Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == ">="));
 			Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == "<="));
 			Assert.IsNotNull(operatorTokens.FirstOrDefault(t => t.Value == "!"));

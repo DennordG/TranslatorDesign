@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 using TranslatorDesign.Tokenizer;
-using TranslatorDesign.Tokenizer.RegexProvider;
 
 namespace TranslatorDesign.Syntax
 {
-    [DebuggerDisplay("{_expectedValue}")]
+    [DebuggerDisplay("{" + nameof(_expectedValue) + "}")]
     public class ValueFragment : IGrammarFragment
     {
         private readonly string _expectedValue;

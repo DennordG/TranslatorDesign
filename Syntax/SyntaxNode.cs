@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TranslatorDesign.Helpers;
 using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
 	public class SyntaxNode
 	{
-		public IList<SyntaxNode> Children { get; private set; }
+		public IList<SyntaxNode> Children { get; }
 
 		public GrammarType? GrammarType;
 		public TokenType? TokenType;
 		public string Value;
 
-		public int Depth = 0;
+		public int Depth;
 
 
 		#region ctor
@@ -108,18 +107,6 @@ namespace TranslatorDesign.Syntax
 		private string StringRepr()
 		{
 			return Value ?? GrammarType?.ToString() ?? TokenType?.ToString();
-		}
-
-		public SyntaxNode ShallowCopy()
-		{
-			return (SyntaxNode)MemberwiseClone();
-		}
-
-		public void SwapNodeValues(SyntaxNode node)
-		{
-			Utils.Swap(ref Value, ref node.Value);
-			Utils.Swap(ref TokenType, ref node.TokenType);
-			Utils.Swap(ref GrammarType, ref node.GrammarType);
 		}
 
 		public void AddDepth(int add)

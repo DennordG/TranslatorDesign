@@ -26,7 +26,7 @@ namespace TranslatorDesign.Helpers
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine("The content of the file could not be read: " + ex.InnerException.Message);
+				Console.WriteLine("The content of the file could not be read: " + ex.InnerException?.Message);
 			}
 		}
 

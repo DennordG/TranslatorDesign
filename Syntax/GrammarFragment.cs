@@ -5,7 +5,7 @@ using TranslatorDesign.Tokenizer;
 
 namespace TranslatorDesign.Syntax
 {
-    [DebuggerDisplay("{_grammarFragments}")]
+    [DebuggerDisplay("{" + nameof(_grammarFragments) + "}")]
     public class GrammarFragment : IGrammarFragment
 	{
 		private readonly IEnumerable<IGrammarFragment> _grammarFragments;

@@ -4,7 +4,6 @@
 	{
 		Invalid,
 		Reserved,
-		SequenceTerminator,
 		Integer,
         String,
         ArithmeticAndLogicOperator,

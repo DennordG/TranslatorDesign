@@ -13,12 +13,12 @@ namespace TranslatorDesign.Tokenizer
 		private const string IdentifierPattern = @"(?:_+[a-zA-Z\d]\w*)|(?:[a-zA-Z]\w*)";
 		private const string IntegerPattern = @"\d+\b";
 
-		private readonly TokenDefinition RegexTokenDefinition;
+		private readonly TokenDefinition _regexTokenDefinition;
 
 		public Tokenizer(ReservedRegexProvider reservedProvider, OperatorRegexProvider operatorProvider, SyntaxOperatorRegexProvider syntaxProvider)
 		{
 			var reservedPattern = reservedProvider.GetPattern();
-			RegexTokenDefinition = new TokenDefinition(TokenType.Reserved, RegexWrapper.DefaultWrap(reservedPattern));
+			_regexTokenDefinition = new TokenDefinition(TokenType.Reserved, RegexWrapper.DefaultWrap(reservedPattern));
 
 			var operatorPattern = operatorProvider.GetPattern();
 			var syntaxPattern = syntaxProvider.GetPattern();
@@ -105,7 +105,7 @@ namespace TranslatorDesign.Tokenizer
 				{
 					if (match.TokenType == TokenType.Identifier)
 					{
-						var reservedMatch = RegexTokenDefinition.Match(text);
+						var reservedMatch = _regexTokenDefinition.Match(text);
 
 						var isReserved = reservedMatch.IsMatch && reservedMatch.Value.Length == match.Value.Length;
 

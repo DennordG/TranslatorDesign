@@ -9,7 +9,7 @@ namespace TranslatorDesign.Tests
 	[TestClass]
     public class ParserTests
     {
-		readonly Tokenizer.Tokenizer tokenizer = new Tokenizer.Tokenizer(
+		private readonly Tokenizer.Tokenizer _tokenizer = new Tokenizer.Tokenizer(
                 new ReservedRegexProvider(),
                 new OperatorRegexProvider(),
                 new SyntaxOperatorRegexProvider()
@@ -36,12 +36,12 @@ namespace TranslatorDesign.Tests
                 "}"
             };
 
-            var tokens = tokenizer.Tokenize(inputText);
+            var tokens = _tokenizer.Tokenize(inputText);
 
             Assert.IsFalse(tokens.Any(t => t.TokenType == TokenType.Invalid));
 
             var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-            var (couldParse, syntaxTree) = parser.Parse(tokens);
+            var (couldParse, _) = parser.Parse(tokens);
 
             Assert.IsTrue(couldParse);
         }
@@ -67,12 +67,12 @@ namespace TranslatorDesign.Tests
                 "}"
             };
 
-            var tokens = tokenizer.Tokenize(inputText);
+            var tokens = _tokenizer.Tokenize(inputText);
 
             Assert.IsFalse(tokens.Any(t => t.TokenType == TokenType.Invalid));
 
             var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-            var (couldParse, syntaxTree) = parser.Parse(tokens);
+            var (couldParse, _) = parser.Parse(tokens);
 
             Assert.IsFalse(couldParse);
         }
@@ -95,12 +95,12 @@ namespace TranslatorDesign.Tests
                 "}"
             };
 
-            var tokens = tokenizer.Tokenize(inputText);
+            var tokens = _tokenizer.Tokenize(inputText);
 
             Assert.IsFalse(tokens.Any(t => t.TokenType == TokenType.Invalid));
 
             var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-            var (couldParse, syntaxTree) = parser.Parse(tokens);
+            var (couldParse, _) = parser.Parse(tokens);
 
             Assert.IsFalse(couldParse);
         }
@@ -123,12 +123,12 @@ namespace TranslatorDesign.Tests
                 "}"
             };
 
-            var tokens = tokenizer.Tokenize(inputText);
+            var tokens = _tokenizer.Tokenize(inputText);
 
             Assert.IsFalse(tokens.Any(t => t.TokenType == TokenType.Invalid));
 
             var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-            var (couldParse, syntaxTree) = parser.Parse(tokens);
+            var (couldParse, _) = parser.Parse(tokens);
 
             Assert.IsTrue(couldParse);
         }
