@@ -101,7 +101,7 @@ namespace TranslatorDesign.Syntax
 
 		public override string ToString()
 		{
-			return $"{StringRepr()}";
+			return StringRepr();
 		}
 
 		private string StringRepr()

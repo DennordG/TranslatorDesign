@@ -47,7 +47,7 @@ namespace TranslatorDesign
 			}
 
 			var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-			var (couldParse, syntaxTree) = parser.Parse(tokens);
+			var couldParse = parser.Parse(tokens, out var syntaxTree);
 
 			if (!couldParse)
 			{

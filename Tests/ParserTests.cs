@@ -41,7 +41,7 @@ namespace TranslatorDesign.Tests
             Assert.IsFalse(tokens.Any(t => t.TokenType == TokenType.Invalid));
 
             var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-            var (couldParse, _) = parser.Parse(tokens);
+            var couldParse = parser.Parse(tokens, out var _);
 
             Assert.IsTrue(couldParse);
         }
@@ -72,7 +72,7 @@ namespace TranslatorDesign.Tests
             Assert.IsFalse(tokens.Any(t => t.TokenType == TokenType.Invalid));
 
             var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-            var (couldParse, _) = parser.Parse(tokens);
+            var couldParse = parser.Parse(tokens, out var _);
 
             Assert.IsFalse(couldParse);
         }
@@ -100,7 +100,7 @@ namespace TranslatorDesign.Tests
             Assert.IsFalse(tokens.Any(t => t.TokenType == TokenType.Invalid));
 
             var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-            var (couldParse, _) = parser.Parse(tokens);
+            var couldParse = parser.Parse(tokens, out var _);
 
             Assert.IsFalse(couldParse);
         }
@@ -128,7 +128,7 @@ namespace TranslatorDesign.Tests
             Assert.IsFalse(tokens.Any(t => t.TokenType == TokenType.Invalid));
 
             var parser = new Parser(new Grammar(new GrammarRulesProvider()));
-            var (couldParse, _) = parser.Parse(tokens);
+            var couldParse = parser.Parse(tokens, out var _);
 
             Assert.IsTrue(couldParse);
         }

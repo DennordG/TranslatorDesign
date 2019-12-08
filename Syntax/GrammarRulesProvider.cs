@@ -420,7 +420,7 @@ namespace TranslatorDesign.Syntax
 			{
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new RecursiveFragment(GrammarType.Atom, CreateUnaryOperatorGrammar, addNewNode: false),
+					new RecursiveFragment(GrammarType.Exp, CreateUnaryOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Atom, CreateAtomGrammar),
 				}),
 				new RecursiveFragment(GrammarType.Atom, CreateAtomGrammar, addNewNode: false)
@@ -539,7 +539,7 @@ namespace TranslatorDesign.Syntax
 					new RecursiveFragment(GrammarType.Id, CreateIdGrammar),
 					new ValueFragment("["),
 					new RecursiveFragment(GrammarType.Exp, CreateExpGrammar),
-					new ValueFragment("[")
+					new ValueFragment("]")
 				})
 			};
 		}
