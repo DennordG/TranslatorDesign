@@ -21,14 +21,14 @@ namespace TranslatorDesign.Syntax
 		}
 
         public bool Validate(Stack<Token> tokens, SyntaxNode syntaxNode)
-        {
-            var tokensCopy = new Stack<Token>(tokens.Reverse());
+		{
+			var tokensCopy = new Stack<Token>(tokens.Reverse());
             var foundResult = false;
 
 			var recursiveNode = new SyntaxNode(_grammarType);
 			syntaxNode.AddChild(recursiveNode);
 
-            foreach (var fragment in _grammarFragmentsProvider())
+			foreach (var fragment in _grammarFragmentsProvider())
             {
                 if (!fragment.Validate(tokensCopy, recursiveNode))
 				{
@@ -43,18 +43,28 @@ namespace TranslatorDesign.Syntax
             }
 
             if (foundResult && tokens.Count != tokensCopy.Count)
-            {
+			{
 				if (!_addNewNode)
 				{
 					syntaxNode.CopyChildrenAndRemove(recursiveNode);
 				}
 
-                while (tokens.Count > tokensCopy.Count)
+				if (_grammarType == GrammarType.ComparisonOp)
+				{
+					var prevExp = syntaxNode.Parent.Parent.Children.First();
+					if (prevExp.Children.Any(c => c.GrammarType == GrammarType.ComparisonOp))
+					{
+						syntaxNode.RemoveChild(recursiveNode);
+						return false;
+					}
+				}
+
+				while (tokens.Count > tokensCopy.Count)
                 {
                     tokens.Pop();
                 }
             }
-			else if (tokens.Count == tokensCopy.Count)
+			else if (!foundResult)
 			{
 				syntaxNode.RemoveChild(recursiveNode);
 			}

@@ -9,7 +9,7 @@ namespace TranslatorDesign.Syntax
     {
         private readonly string _expectedValue;
 
-        public ValueFragment(string expectedValue)
+		public ValueFragment(string expectedValue)
         {
             _expectedValue = expectedValue;
         }
@@ -17,11 +17,11 @@ namespace TranslatorDesign.Syntax
         public bool Validate(Stack<Token> tokens, SyntaxNode syntaxNode)
         {
             if (tokens.Count > 0 && _expectedValue == tokens.Peek().Value)
-            {
+			{
 				var token = tokens.Pop();
 				if (!token.IsPunctuation())
 				{
-					syntaxNode.AddChild(new SyntaxNode(token.Value));
+					syntaxNode.AddChild(new SyntaxNode(syntaxNode.GrammarType, token.Value));
 				}
 
                 return true;

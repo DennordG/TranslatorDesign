@@ -309,12 +309,12 @@ namespace TranslatorDesign.Syntax
 		{
 			return new List<IGrammarFragment>
 			{
-				new RecursiveFragment(GrammarType.Exp, CreateOrOrOperatorGrammar, addNewNode: false),
-				new RecursiveFragment(GrammarType.Exp, CreateAndAndOperatorGrammar, addNewNode: false),
-				new RecursiveFragment(GrammarType.Exp, CreateComparisonOperatorGrammar, addNewNode: false),
-				new RecursiveFragment(GrammarType.Exp, CreatePlusMinusOperatorGrammar, addNewNode: false),
-				new RecursiveFragment(GrammarType.Exp, CreateMultDivOperatorGrammar, addNewNode: false),
-				new RecursiveFragment(GrammarType.Exp, CreateUnaryOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.LogicOrOp, CreateOrOrOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.LogicAndOp, CreateAndAndOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.ComparisonOp, CreateComparisonOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.PlusMinusOp, CreatePlusMinusOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.MultDivOp, CreateMultDivOperatorGrammar, addNewNode: false),
+				new RecursiveFragment(GrammarType.UnaryOp, CreateUnaryOperatorGrammar, addNewNode: false),
 			};
 		}
 
@@ -325,7 +325,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp2Grammar),
-					new RecursiveFragment(GrammarType.Exp, CreateOrOrOperatorGrammar, addNewNode: false),
+					new RecursiveFragment(GrammarType.LogicOrOp, CreateOrOrOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp2Grammar)
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp2Grammar, addNewNode: false)
@@ -339,7 +339,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp3Grammar),
-					new RecursiveFragment(GrammarType.Exp, CreateAndAndOperatorGrammar, addNewNode: false),
+					new RecursiveFragment(GrammarType.LogicAndOp, CreateAndAndOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp3Grammar),
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp3Grammar, addNewNode: false)
@@ -353,7 +353,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
-					new RecursiveFragment(GrammarType.Exp, CreateComparisonOperatorGrammar, addNewNode: false),
+					new RecursiveFragment(GrammarType.ComparisonOp, CreateComparisonOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar),
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp4Grammar, addNewNode: false)
@@ -367,7 +367,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp5Grammar),
-					new RecursiveFragment(GrammarType.Exp, CreatePlusMinusOperatorGrammar, addNewNode: false),
+					new RecursiveFragment(GrammarType.PlusMinusOp, CreatePlusMinusOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp5Grammar),
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp5Grammar, addNewNode: false)
@@ -381,7 +381,7 @@ namespace TranslatorDesign.Syntax
 				new GrammarFragment(new List<IGrammarFragment>
 				{
 					new RecursiveFragment(GrammarType.Exp, CreateExp6Grammar),
-					new RecursiveFragment(GrammarType.Exp, CreateMultDivOperatorGrammar, addNewNode: false),
+					new RecursiveFragment(GrammarType.MultDivOp, CreateMultDivOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Exp, CreateExp6Grammar),
 				}),
 				new RecursiveFragment(GrammarType.Exp, CreateExp6Grammar, addNewNode: false)
@@ -394,7 +394,7 @@ namespace TranslatorDesign.Syntax
 			{
 				new GrammarFragment(new List<IGrammarFragment>
 				{
-					new RecursiveFragment(GrammarType.Exp, CreateUnaryOperatorGrammar, addNewNode: false),
+					new RecursiveFragment(GrammarType.UnaryOp, CreateUnaryOperatorGrammar, addNewNode: false),
 					new RecursiveFragment(GrammarType.Atom, CreateAtomGrammar),
 				}),
 				new RecursiveFragment(GrammarType.Atom, CreateAtomGrammar, addNewNode: false)

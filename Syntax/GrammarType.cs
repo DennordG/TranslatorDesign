@@ -20,6 +20,12 @@
 		ActualList,
 		SubscriptExpr,
 		IdDecl,
-		IdUse
+		IdUse,
+		LogicOrOp,
+		LogicAndOp,
+		ComparisonOp,
+		PlusMinusOp,
+		MultDivOp,
+		UnaryOp
 	}
 }

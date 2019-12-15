@@ -21,6 +21,13 @@ namespace TranslatorDesign.Syntax
 			Children = new List<SyntaxNode>();
 		}
 
+		public SyntaxNode(GrammarType? grammarType, string value)
+			: this()
+		{
+			GrammarType = grammarType;
+			Value = value;
+		}
+
 		public SyntaxNode(GrammarType grammarType)
 			: this()
 		{
