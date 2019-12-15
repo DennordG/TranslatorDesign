@@ -1,4 +1,6 @@
-﻿using TranslatorDesign.Syntax;
+﻿using System;
+using System.Collections.Generic;
+using TranslatorDesign.Syntax;
 
 namespace TranslatorDesign.Semantic
 {
@@ -13,7 +15,21 @@ namespace TranslatorDesign.Semantic
 
 		public void ValidateAndThrow(SyntaxTree syntaxTree)
 		{
-			_nameAnalyzer.PerformNameAnalysis(syntaxTree);
+			var exceptions = new List<Exception>();
+
+			try
+			{
+				_nameAnalyzer.PerformNameAnalysis(syntaxTree);
+			}
+			catch (AggregateException aggException)
+			{
+				exceptions.AddRange(aggException.InnerExceptions);
+			}
+
+			if (exceptions.Count > 0)
+			{
+				throw new AggregateException(exceptions);
+			}
 		}
 	}
 }

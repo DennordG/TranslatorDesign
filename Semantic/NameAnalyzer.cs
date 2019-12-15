@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TranslatorDesign.Syntax;
 
@@ -20,6 +21,8 @@ namespace TranslatorDesign.Semantic
 
 		public void PerformNameAnalysis(SyntaxTree syntaxTree)
 		{
+			var exceptions = new List<Exception>();
+
 			foreach (var node in syntaxTree.Traverse())
 			{
 				if (node.GrammarType == GrammarType.IdDecl)
@@ -33,7 +36,7 @@ namespace TranslatorDesign.Semantic
 					}
 					else
 					{
-						throw new Exception($"Found multiple declarations of	'{identifier.Value}'.");
+						exceptions.Add(new Exception($"Found multiple declarations of '{identifier.Value}'."));
 					}
 				}
 				else if (node.GrammarType == GrammarType.IdUse)
@@ -42,13 +45,18 @@ namespace TranslatorDesign.Semantic
 
 					if (!_symbolTable.Exists(identifier.Depth, identifier.Value))
 					{
-						throw new Exception($"Found undeclared identifier '{identifier.Value}'.");
+						exceptions.Add(new Exception($"Found undeclared identifier '{identifier.Value}'."));
 					}
 				}
 				else if (node.GrammarType != null)
 				{
 					_symbolTable.Clear(node.Depth + 1);
 				}
+			}
+
+			if (exceptions.Count > 0)
+			{
+				throw new AggregateException(exceptions);
 			}
 		}
 

@@ -59,7 +59,17 @@ namespace TranslatorDesign
 			syntaxTree.Print();
 
 			var semanticAnalyzer = new SemanticAnalyzer();
-			semanticAnalyzer.ValidateAndThrow(syntaxTree);
+
+			try
+			{
+				semanticAnalyzer.ValidateAndThrow(syntaxTree);
+			}
+			catch (AggregateException aggException)
+			{
+				var errors = string.Join(Environment.NewLine, aggException.Flatten().InnerExceptions.Select(e => e.Message));
+				Console.WriteLine("Semantic errors: ");
+				Console.WriteLine(errors);
+			}
 		}
 	}
 }
