@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace TranslatorDesign.Syntax
 {
-	public class SyntaxNode
+    public class SyntaxNode
 	{
 		public IList<SyntaxNode> Children { get; }
 
@@ -40,8 +39,9 @@ namespace TranslatorDesign.Syntax
 		public void AddChild(SyntaxNode node)
 		{
 			node.Depth = Depth + 1;
-			Children.Add(node);
-			node.Parent = this;
+            node.Parent = this;
+
+            Children.Add(node);
 		}
 
 		public void ClearChildren()
@@ -61,19 +61,23 @@ namespace TranslatorDesign.Syntax
 			Children.Remove(node);
 		}
 
-		public void AddCopyChildrenFrom(SyntaxNode node)
-		{
-			foreach (var child in node.Children)
-			{
-				Children.Add(child.ShallowCopy());
-				Children.Last().Parent = this;
-			}
-		}
-		#endregion
+        public void CopyChildrenAndRemove(SyntaxNode node)
+        {
+            foreach (var child in node.Children)
+            {
+                child.AdjustDepth(Depth + 1);
+                child.Parent = this;
+
+                Children.Add(child);
+            }
+
+            Children.Remove(node);
+        }
+        #endregion
 
 
-		#region Utils
-		public void Print()
+        #region Utils
+        public void Print()
 		{
 			Console.WriteLine(LeftSpace(Depth) + ToString());
 			foreach (var child in Children)
@@ -105,20 +109,15 @@ namespace TranslatorDesign.Syntax
 			return Value ?? GrammarType?.ToString();
 		}
 
-		public void AddDepth(int add)
-		{
-			foreach (var child in Children)
-			{
-				child.AddDepth(add);
-			}
+        private void AdjustDepth(int currentDepth)
+        {
+            Depth = currentDepth;
 
-			Depth += add;
-		}
-
-		private SyntaxNode ShallowCopy()
-		{
-			return (SyntaxNode)MemberwiseClone();
-		}
-		#endregion
-	}
+            foreach (var child in Children)
+            {
+                child.AdjustDepth(currentDepth + 1);
+            }
+        }
+        #endregion
+    }
 }

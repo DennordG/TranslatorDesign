@@ -47,7 +47,7 @@ namespace TranslatorDesign.Semantic
 					{
 						exceptions.Add(new Exception($"Found undeclared identifier '{identifier.Value}'."));
 					}
-				}
+				} 
 				else if (node.GrammarType != null)
 				{
 					_symbolTable.Clear(node.Depth + 1);
@@ -66,7 +66,7 @@ namespace TranslatorDesign.Semantic
 			{
 				identifier = identifier.Parent;
 			}
-
+            
 			return identifier?.Depth;
 		}
 
