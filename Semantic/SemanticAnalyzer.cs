@@ -10,7 +10,9 @@ namespace TranslatorDesign.Semantic
 
 		public SemanticAnalyzer()
 		{
-			_nameAnalyzer = new NameAnalyzer();
+			var symbolTable = new SymbolTable();
+
+			_nameAnalyzer = new NameAnalyzer(symbolTable);
 		}
 
 		public void ValidateAndThrow(SyntaxTree syntaxTree)

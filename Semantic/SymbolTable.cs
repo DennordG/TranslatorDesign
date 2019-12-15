@@ -5,33 +5,33 @@ namespace TranslatorDesign.Semantic
 {
 	public class SymbolTable
 	{
-		private readonly IDictionary<int, IList<string>> _table;
+		private readonly IDictionary<int, IList<SymbolInfo>> _table;
 
 		public SymbolTable()
 		{
-			_table = new Dictionary<int, IList<string>>();
+			_table = new Dictionary<int, IList<SymbolInfo>>();
 		}
 
-		public void AddDecl(int depth, string value)
+		public void AddDecl(int depth, DeclarationInfo declInfo, IList<DeclarationInfo> parameters)
 		{
 			if (!_table.ContainsKey(depth))
 			{
-				_table.Add(depth, new List<string>());
+				_table.Add(depth, new List<SymbolInfo>());
 			}
 
-			_table[depth].Add(value);
+			_table[depth].Add(new SymbolInfo(declInfo, parameters));
 		}
 
-		public bool Exists(int depth, string value)
+		public SymbolInfo GetDeclById(int depth, string value)
 		{
-			var validDepths = _table.Keys.Where(d => d <= depth);
+			var validDepths = _table.Keys.Where(d => d <= depth).ToList();
 
-			return validDepths.Any(d => ExistsAtDepth(d, value));
+			return validDepths.Select(d => GetDeclByIdAtDepth(d, value)).FirstOrDefault(declInfo => declInfo != null);
 		}
 
-		public bool ExistsAtDepth(int depth, string value)
+		public SymbolInfo GetDeclByIdAtDepth(int depth, string id)
 		{
-			return _table.ContainsKey(depth) && _table[depth].Contains(value);
+			return _table.ContainsKey(depth) ? _table[depth].FirstOrDefault(s => s.Declaration.Id == id) : null;
 		}
 
 		public void Clear(int depth)
