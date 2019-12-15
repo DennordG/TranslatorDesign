@@ -73,8 +73,8 @@ namespace TranslatorDesign.Semantic
 			var mainParameters = decl.Children.FirstOrDefault(c => c.GrammarType == GrammarType.Parameters);
 			if (mainParameters != null)
 			{
-				var formalsList = mainParameters.Children.First().Children;
-				parameters = formalsList.Select(GetDeclInfo).ToList();
+				var formalsList = mainParameters.Children.FirstOrDefault()?.Children;
+				parameters = formalsList?.Select(GetDeclInfo).ToList();
 			}
 
 			return parameters;
